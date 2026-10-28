@@ -1,0 +1,20 @@
+{
+  "repo": "boderline7/kvideo-config",
+  "upstreams": [
+    {
+      "name": "fmynj/lunatv-config (raw)",
+      "url": "https://raw.githubusercontent.com/fmynj/lunatv-config/main/LunaTV-config.json"
+    },
+    {
+      "name": "fmynj/lunatv-config (jsDelivr)",
+      "url": "https://cdn.jsdelivr.net/gh/fmynj/lunatv-config@main/LunaTV-config.json"
+    },
+    {
+      "name": "hafrey1/LunaTV-config (raw)",
+      "url": "https://raw.githubusercontent.com/hafrey1/LunaTV-config/main/LunaTV-config.json"
+    }
+  ],
+  "exclude": [],
+  "rename": {},
+  "group": {}
+}

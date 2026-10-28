@@ -1,0 +1,17 @@
+{
+  "name": "kvideo-config",
+  "version": "1.0.0",
+  "private": true,
+  "description": "把 LunaTV/MoonTV 源配置转换成 KVideo 可用的订阅源",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:probe": "node scripts/build.mjs --probe",
+    "convert": "node scripts/convert.mjs",
+    "verify": "node scripts/verify.mjs"
+  },
+  "license": "MIT"
+}
