@@ -5,11 +5,6 @@ on:
     # 每天 UTC 20:10（北京时间 04:10），避开整点高负载
     - cron: '10 20 * * *'
   workflow_dispatch:
-    inputs:
-      include_premium:
-        description: '同时输出特殊分组源（默认不输出）'
-        type: boolean
-        default: false
 
 permissions:
   contents: write
@@ -29,10 +24,8 @@ jobs:
         with:
           node-version: '20'
 
-      # 纯转换：拉上游 -> 转 KVideo 字段 -> 写 dist/ 和 README，不探测
+      # 全量转换：拉上游 -> 转 KVideo 字段 -> 写 dist/ 和 README，不探测、不筛选
       - name: Build
-        env:
-          INCLUDE_PREMIUM: ${{ inputs.include_premium && '1' || '0' }}
         run: node scripts/build.mjs
 
       - name: Verify

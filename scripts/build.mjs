@@ -27,7 +27,6 @@ const has = (name) => argv.includes(`--${name}`);
 
 const INPUT = arg('input');
 const PROBE = has('probe') || process.env.PROBE === '1';
-const INCLUDE_PREMIUM = has('include-premium') || process.env.INCLUDE_PREMIUM === '1';
 const CONCURRENCY = Number(arg('concurrency', process.env.CONCURRENCY || 8));
 const TIMEOUT_MS = Number(arg('timeout', process.env.TIMEOUT_MS || 12000));
 const KEYWORD = String(arg('keyword', process.env.PROBE_KEYWORD || '庆余年'));
@@ -148,14 +147,12 @@ async function main() {
   const { sources, skipped } = normalizeConfig(cfg, { overrides, resolveProxy: PROBE });
   const normal = sources.filter((s) => s.source.group === 'normal');
   const premium = sources.filter((s) => s.source.group === 'premium');
-  const active = INCLUDE_PREMIUM ? sources : normal;
+  // 全量输出：上游给多少就转多少，不按分组做筛选
+  const active = sources;
   log(
-    `转换完成: 共 ${sources.length} 个（常规 ${normal.length} / 特殊分组 ${premium.length}），` +
-      `输出 ${active.length} 个，跳过 ${skipped.length}`,
+    `转换完成: 共 ${sources.length} 个（常规 ${normal.length} / premium ${premium.length}），` +
+      `跳过 ${skipped.length}`,
   );
-  if (!INCLUDE_PREMIUM && premium.length) {
-    log(`未收录 ${premium.length} 个特殊分组源（需要时加 --include-premium）`);
-  }
 
   // 3) 可选探测（默认不做，纯转换模式下不联网打接口）
   if (PROBE) {
@@ -206,13 +203,10 @@ async function main() {
 
   const withList = (base, list, extra = {}) => ({ ...base, ...extra, count: list.length, sources: list });
 
-  await writeJson('kvideo-sources.json', withList(meta, allList));
+  await writeJson('kvideo-sources.json', withList(meta, allList, { name: 'KVideo 中文源 · 全量' }));
   await writeJson('kvideo-normal.json', withList(meta, normalList, { name: 'KVideo 中文源 · 常规' }));
-  if (premiumList.length) {
-    await writeJson('kvideo-premium.json', withList(meta, premiumList, { name: 'KVideo 中文源 · 特殊分组' }));
-  } else {
-    await fs.rm(path.join(DIST, 'kvideo-premium.json'), { force: true });
-  }
+  // 全量文件已包含 premium 分组，不再单独出第三份
+  await fs.rm(path.join(DIST, 'kvideo-premium.json'), { force: true });
   // 注意：KVideo 的「JSON」粘贴页只有 Array.isArray 一条分支（JsonImportTab.tsx），
   // 包一层 {name, count, sources} 会直接报「JSON 格式错误：应为数组」，
   // 所以这个文件必须是纯数组 —— 它是唯一能被粘贴页接受的文件。
@@ -221,7 +215,7 @@ async function main() {
   // 纯转换模式不再产出 status.json，清掉旧版本残留
   await fs.rm(path.join(DIST, 'status.json'), { force: true });
 
-  log(`完成: ${allList.length} 个源（常规 ${normalList.length}${premiumList.length ? ` / 特殊分组 ${premiumList.length}` : ''}）`);
+  log(`完成: ${allList.length} 个源（常规 ${normalList.length} / premium ${premiumList.length}）`);
   await updateReadme({ meta, allList, readmeRepo: overrides.repo, probed: PROBE, keyword: KEYWORD });
 }
 
@@ -231,7 +225,7 @@ function mdTable(rows, probed) {
     : '| # | 名称 | id | 接口域名 | 分组 |\n|---:|---|---|---|:---:|';
   const body = rows
     .map((s, i) => {
-      const group = s.group === 'premium' ? '特殊分组' : '常规';
+      const group = s.group === 'premium' ? 'premium' : 'normal';
       const name = s.name.replace(/\|/g, '/');
       const host = hostOf(s.baseUrl);
       if (!probed) return `| ${i + 1} | ${name} | \`${s.id}\` | \`${host}\` | ${group} |`;
@@ -254,14 +248,15 @@ async function updateReadme({ meta, allList, readmeRepo, probed, keyword }) {
   const lines = [
     MARK_START,
     '',
-    `> 自动生成于 **${meta.updated_at}** ｜ 上游：\`${meta.upstream}\` ｜ 共 **${meta.count}** 个源` +
-      (premiumCount ? `（含特殊分组 ${premiumCount} 个）` : ''),
-    `>`,
-    probed
-      ? `> 本次带了探测（关键词「${keyword}」），状态列仅供参考，不影响是否收录。`
-      : `> 本次为纯转换：上游有什么就转什么，未做可用性筛选。`,
+    '<details>',
+    `<summary>源清单（${meta.count} 个，点击展开）</summary>`,
     '',
+    `> 生成于 **${meta.updated_at}** ｜ 上游：\`${meta.upstream}\`` +
+      (premiumCount ? ` ｜ 常规 ${meta.count - premiumCount} / premium ${premiumCount}` : ''),
+    '' + (probed ? `>\n> 本次带了探测（关键词「${keyword}」），状态列仅供参考，不影响是否收录。\n` : ''),
     mdTable(allList, probed),
+    '',
+    '</details>',
     '',
     MARK_END,
   ];

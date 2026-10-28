@@ -13,9 +13,9 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
 
-const SUB_FILES = ['kvideo-sources.json', 'kvideo-normal.json', 'kvideo-premium.json'];
+const SUB_FILES = ['kvideo-sources.json', 'kvideo-normal.json'];
 const PASTE_FILE = 'kvideo-sources-manual.json';
-const STALE = ['status.json'];
+const STALE = ['status.json', 'kvideo-premium.json'];
 
 let failures = 0;
 const fail = (m) => {
