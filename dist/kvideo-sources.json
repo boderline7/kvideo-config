@@ -1,7 +1,7 @@
 {
   "name": "KVideo 中文源（由 LunaTV/MoonTV 配置转换）",
-  "updated_at": "2026-10-28 16:42 +08:00",
-  "upstream": "fmynj/lunatv-config (jsDelivr)",
+  "updated_at": "2026-10-28 16:47 +08:00",
+  "upstream": "fmynj/lunatv-config (raw)",
   "count": 40,
   "mode": "convert",
   "sources": [
