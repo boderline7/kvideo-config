@@ -45,7 +45,7 @@ node scripts/verify.mjs     # 自检，应输出「全部通过」
 <details>
 <summary>源清单（74 个，点击展开）</summary>
 
-> 生成于 **2026-10-28 16:54 +08:00** ｜ 上游：`fmynj/lunatv-config (raw)` ｜ 常规 40 / premium 34
+> 生成于 **2026-10-29 07:59 +08:00** ｜ 上游：`fmynj/lunatv-config (raw)` ｜ 常规 40 / premium 34
 
 | # | 名称 | id | 接口域名 | 分组 |
 |---:|---|---|---|:---:|
