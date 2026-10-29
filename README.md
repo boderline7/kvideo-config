@@ -110,35 +110,47 @@ location.reload();
 
 ## Docker 一键部署（官方镜像）
 
-用 KVideo 官方镜像 `kuekhaoyang/kvideo:latest`，**只有两个可调项：端口、源**。
+用 KVideo 官方镜像 `kuekhaoyang/kvideo:latest`，**三个可调项：端口、源、登录密码**。
 
 ```bash
 git clone https://github.com/boderline7/kvideo-config.git
 cd kvideo-config
 
-sh deploy/install.sh                 # 3000 端口 + 自动选源
-sh deploy/install.sh 8080            # 换端口
-sh deploy/install.sh 8080 <源地址>    # 端口和源都指定
-sh deploy/install.sh --force         # 重建同名容器
+sh deploy/install.sh                            # 3000 端口 + 自动选源，不设密码
+sh deploy/install.sh 8080                       # 换端口
+sh deploy/install.sh 8080 <源地址>               # 端口和源都指定
+sh deploy/install.sh --password 你的密码          # 设置登录密码（推荐）
+sh deploy/install.sh --password 你的密码 --premium 另一个密码   # 高级内容再单独设一道
+sh deploy/install.sh --force                    # 重建同名容器
 ```
 
 不指定源时，脚本按 `gcore` → `jsDelivr` → `raw` 试一遍，用能通的那条（国内通常只有 `gcore` 通）。
 
-compose 方式：`cd deploy && docker compose up -d`。
+compose 方式：`cd deploy && docker compose up -d`（密码在 compose 文件里取消注释填写）。
 
-不用脚本就是这一条：
+### 登录密码（访问认证）
+
+KVideo 默认**不设密码时谁打开都能用**，同一个网络里的人直接输 IP 就能进。要加锁只加一个环境变量：
+
+| 变量 | 作用 |
+|---|---|
+| `ADMIN_PASSWORD` | 登录密码，登录后就是超级管理员，能管源和设置 |
+| `PREMIUM_PASSWORD` | 只给 `/premium` 高级内容加的独立密码，可选 |
+| `PERSIST_SESSION` | 默认 `true`，关掉浏览器后再打开不用重输；设 `false` 则每次重新登录 |
 
 ```bash
-docker run -d --name kvideo --restart unless-stopped \
-  -p 3000:3000 \
-  -e 'SUBSCRIPTION_SOURCES=[{"name":"汇总","url":"https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json"}]' \
-  kuekhaoyang/kvideo:latest
+sh deploy/install.sh --password 你的密码
 ```
+
+装完打开页面会先出现登录框，输入这个密码才进得去。密码只在容器启动时读取，**改密码要重建容器**（`--force` 再跑一次）。
+
+如果家里多个人用、还想各看各的收藏和历史，可以改用多账户 `ACCOUNTS`（格式 `用户名:密码:名称:角色`，角色选 `admin` 或 `viewer`），数据按账户隔离；这条参数本脚本没做，需要时手动加 `-e`。
 
 ### 装完自检
 
 ```bash
 curl -s http://127.0.0.1:3000/api/auth | grep -o kvideo-merged.json        # 有输出 = 源已挂
+curl -s http://127.0.0.1:3000/api/auth | grep -o '"hasAuth":[a-z]*'         # true = 密码已生效
 curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:3000/settings    # 200
 ```
 
@@ -146,11 +158,17 @@ curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:3000/settings    # 200
 
 ### 给 AI 的指令
 
-> 用官方镜像 `kuekhaoyang/kvideo:latest` 部署 KVideo，只设两样：端口 3000、源用本仓库汇总地址。执行 `sh deploy/install.sh`；完成后确认 `/api/auth` 含 `kvideo-merged.json`、`/settings` 返回 200、订阅更新后 101 条。失败看 `docker logs --tail 50 kvideo`，不要重复 `docker run` 叠加容器。
+> 用官方镜像 `kuekhaoyang/kvideo:latest` 部署 KVideo，设三样：端口 3000、源用本仓库汇总地址、登录密码用我给你的那个。执行 `sh deploy/install.sh --password <我给的密码>`；完成后确认 `/api/auth` 含 `kvideo-merged.json` 且 `"hasAuth":true`、`/settings` 返回 200、打开页面会要求登录、订阅更新后 101 条。失败看 `docker logs --tail 50 kvideo`，不要重复 `docker run` 叠加容器。
+
+### 部署常见问题
 
 **镜像拉不下来** — Docker Hub 国内直连不稳。给 Docker 配镜像加速，或在能拉通的机器 `docker save` 后 `docker load`。
 
 **换端口** — 只改 `-p` 左边，右边始终是容器的 3000，例如 `-p 8080:3000`。
+
+**忘了登录密码** — 密码是启动参数，容器里查不到明文补救。用 `docker inspect kvideo` 看当前 `SUBSCRIPTION_SOURCES`，然后用 `sh deploy/install.sh --force --password 新密码` 重建，源不会丢。
+
+**设了密码后手机连不上** — 页面会先弹登录框，输一次即可；`PERSIST_SESSION=false` 时每次打开都要重新输。
 
 ## 说明
 

@@ -1,30 +1,53 @@
 #!/bin/sh
 # KVideo 一键部署（官方镜像）
-# 只做两件事：指定端口、指定源。
+# 可调项：端口、源、访问密码。
 #
-#   sh install.sh                    # 3000 端口，自动选一个能通的源
-#   sh install.sh 8080               # 换端口
-#   sh install.sh 8080 <源地址>       # 端口 + 源都指定
-#   sh install.sh --force            # 已有同名容器时删掉重建
+#   sh install.sh                          # 3000 端口，自动选源，不设密码
+#   sh install.sh 8080                     # 换端口
+#   sh install.sh 8080 <源地址>             # 端口 + 源
+#   sh install.sh --password 你的密码        # 设置登录密码（推荐）
+#   sh install.sh --premium 你的密码         # 高级内容独立密码
+#   sh install.sh --force                  # 已有同名容器时删掉重建
+#
+# 密码也可以走环境变量：ADMIN_PASSWORD=xxx sh install.sh
 set -e
 
 NAME=kvideo
 IMAGE=kuekhaoyang/kvideo:latest   # 官方镜像，不做任何替换
 PORT=3000
 SUB=""
+PASS=""
+PREM=""
 FORCE=0
-
-for a in "$@"; do
-  case "$a" in
-    --force) FORCE=1 ;;
-    http*) SUB="$a" ;;
-    *[!0-9]*|'') : ;;
-    *) PORT="$a" ;;
-  esac
-done
 
 say() { printf '%s\n' "$*"; }
 die() { say "✗ $*"; exit 1; }
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --force) FORCE=1; shift ;;
+    --password|--pass)
+      [ $# -ge 2 ] || die "--password 后面要跟密码"
+      PASS="$2"; shift 2 ;;
+    --premium)
+      [ $# -ge 2 ] || die "--premium 后面要跟密码"
+      PREM="$2"; shift 2 ;;
+    http*) SUB="$1"; shift ;;
+    *[!0-9]*|'') shift ;;
+    *) PORT="$1"; shift ;;
+  esac
+done
+[ -n "$PASS" ] || PASS="${ADMIN_PASSWORD:-}"
+[ -n "$PREM" ] || PREM="${PREMIUM_PASSWORD:-}"
+
+# 密码走 -e 传，含引号/美元符会破坏参数，提前拦住
+check_pw() {
+  case "$1" in
+    *[\"\$\`\\]*) die "密码里不要用双引号、$、反引号、反斜杠" ;;
+  esac
+}
+if [ -n "$PASS" ]; then check_pw "$PASS"; fi
+if [ -n "$PREM" ]; then check_pw "$PREM"; fi
 
 fetch() {
   if command -v curl >/dev/null 2>&1; then
@@ -63,16 +86,23 @@ if docker ps -a --format '{{.Names}}' 2>/dev/null | grep -qx "$NAME"; then
   docker rm -f "$NAME" >/dev/null
 fi
 
-# ---------- 4. 启动：只有端口和源 ----------
+# ---------- 4. 启动：端口 + 源 + 密码 ----------
 say "▶ 启动容器（端口 $PORT）"
+set -- -d --name "$NAME" --restart unless-stopped -p "$PORT:3000"
 if [ -n "$SUB" ]; then
-  docker run -d --name "$NAME" --restart unless-stopped -p "$PORT:3000" \
-    -e "SUBSCRIPTION_SOURCES=[{\"name\":\"汇总\",\"url\":\"$SUB\"}]" \
-    "$IMAGE" >/dev/null
-else
-  docker run -d --name "$NAME" --restart unless-stopped -p "$PORT:3000" \
-    "$IMAGE" >/dev/null
+  set -- "$@" -e "SUBSCRIPTION_SOURCES=[{\"name\":\"汇总\",\"url\":\"$SUB\"}]"
 fi
+if [ -n "$PASS" ]; then
+  set -- "$@" -e "ADMIN_PASSWORD=$PASS"
+  say "  ✓ 已设置登录密码"
+else
+  say "  · 未设登录密码，同网段任何人都能直接打开"
+fi
+if [ -n "$PREM" ]; then
+  set -- "$@" -e "PREMIUM_PASSWORD=$PREM"
+  say "  ✓ 已设置高级内容独立密码"
+fi
+docker run "$@" "$IMAGE" >/dev/null
 
 # ---------- 5. 自检 ----------
 say "▶ 等待就绪"
@@ -92,6 +122,13 @@ case "$AUTH" in
   *kvideo-merged.json*) say "  ✓ 源已挂载" ;;
   *) say "  · 源未挂载，进设置页手动添加" ;;
 esac
+case "$AUTH" in
+  *'"hasAuth":true'*) say "  ✓ 登录已启用" ;;
+  *'"hasAuth":false'*) say "  · 登录未启用（访问无需密码）" ;;
+esac
+case "$AUTH" in
+  *'"hasPremiumAuth":true'*) say "  ✓ 高级内容独立密码已启用" ;;
+esac
 
 IP=$(ip route get 1 2>/dev/null | awk '{print $NF; exit}')
 [ -n "$IP" ] || IP=$(hostname -I 2>/dev/null | awk '{print $1}')
@@ -101,3 +138,4 @@ IP=$(ip route get 1 2>/dev/null | awk '{print $NF; exit}')
 say ""
 say "完成：http://$IP:$PORT"
 say "设置页：http://$IP:$PORT/settings（订阅点「立即更新」，应为 101 条）"
+if [ -n "$PASS" ]; then say "登录密码：安装时指定的那个；忘记就加 --force 重建并重设"; fi
