@@ -47,3 +47,13 @@ jobs:
           fi
           git commit -m "chore: 同步上游源 $(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M')"
           git push
+
+      # jsDelivr 的 @main 会缓存旧内容，推完手动刷一下，免得「加速」地址还发昨天的列表
+      - name: Purge CDN cache
+        if: success()
+        run: |
+          for f in kvideo-merged.json kvideo-normal.json kvideo-sources.json; do
+            echo "purge $f"
+            curl -s -m 40 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/dist/$f" | head -c 200 || true
+            echo
+          done
