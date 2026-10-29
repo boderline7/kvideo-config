@@ -249,7 +249,7 @@ async function updateReadme({ meta, allList, readmeRepo, probed, keyword }) {
     MARK_START,
     '',
     '<details>',
-    `<summary>源清单（${meta.count} 个，点击展开）</summary>`,
+    `<summary>源清单（${meta.count} 个 · LunaTV 原始转换，汇总前，点击展开）</summary>`,
     '',
     `> 生成于 **${meta.updated_at}** ｜ 上游：\`${meta.upstream}\`` +
       (premiumCount ? ` ｜ 常规 ${meta.count - premiumCount} / premium ${premiumCount}` : ''),

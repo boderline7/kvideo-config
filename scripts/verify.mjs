@@ -130,5 +130,27 @@ for (const PASTE_FILE of PASTE_FILES.filter((f) => files.includes(f))) {
   }
 }
 
+// 一致性：常规必须是全量的真子集，条数等于全量里的 normal 分组数
+// （两份文件都来自同一次汇总；对不上说明 merge.mjs 被改坏了，或 build 之后没跑 merge）
+console.log('\n常规 ⊆ 全量（一致性）');
+try {
+  const mergedRaw = JSON.parse(await fs.readFile(path.join(DIST, 'kvideo-merged.json'), 'utf8'));
+  const normalRaw = JSON.parse(await fs.readFile(path.join(DIST, 'kvideo-normal.json'), 'utf8'));
+  const merged = Array.isArray(mergedRaw) ? mergedRaw : mergedRaw.sources || [];
+  const normal = Array.isArray(normalRaw) ? normalRaw : normalRaw.sources || [];
+  const mergedIds = new Set(merged.map((s) => s.id));
+  const normalIds = new Set(normal.map((s) => s.id));
+  const extra = [...normalIds].filter((id) => !mergedIds.has(id));
+  const expect = merged.filter((s) => s.group !== 'premium').length;
+  if (extra.length) fail(`常规里有 ${extra.length} 个源不在全量里，例: ${extra[0]}`);
+  else ok('常规里的源全部能在全量里找到');
+  if (normal.length !== expect) fail(`常规 ${normal.length} 条，但全量里 normal 分组是 ${expect} 条（先跑 node scripts/merge.mjs）`);
+  else ok(`常规 ${normal.length} 条 = 全量里的 normal 分组`);
+  if (normal.some((s) => s.group === 'premium')) fail('常规里混进了 premium 分组');
+  else ok('常规里没有 18 开头的受限源');
+} catch (e) {
+  fail(`一致性检查跳过：${e.message}`);
+}
+
 console.log(`\n${failures ? `❌ ${failures} 处问题` : '✅ 全部通过'}`);
 process.exit(failures ? 1 : 0);

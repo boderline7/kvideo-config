@@ -356,6 +356,21 @@ const writeJson = async (file, data) =>
 
 await writeJson('kvideo-merged.json', { ...meta, sources: ordered });
 
+// 5b) 常规版：直接取汇总结果里的 normal 分组（不含 18 开头）
+//     这样「常规」永远是「全量」的真子集，订阅地址也沿用原来的 kvideo-normal.json，
+//     会覆盖 build.mjs 先写出的那份 LunaTV 单独转换结果（那份没做失效剔除、也没有另外两个上游）。
+const normalOnly = ordered
+  .filter((s) => s.group === 'normal')
+  .map((s, i) => ({ ...s, priority: i + 1 }));
+await writeJson('kvideo-normal.json', {
+  name: 'KVideo 中文源 · 常规（汇总）',
+  updated_at: meta.updated_at,
+  upstream: meta.upstream,
+  count: normalOnly.length,
+  mode: 'merge-normal',
+  sources: normalOnly,
+});
+
 // 6) 粘贴版（纯数组）：JsonImportTab 在 searchPath 为空时会补 /provide/vod，
 //    所以只有以 /provide/vod 结尾的接口能安全拆分，其余不进这份文件
 const manual = [];
@@ -424,4 +439,5 @@ log(`  剔除上游标注失效    ${droppedInvalid.length} 条`);
 log(`  合并重复            ${dupPairs.length} 条`);
 log(`  排除 XML 接口       ${stats.droppedXml.length} 条`);
 log(`  输出                ${ordered.length} 条（常规 ${summary.normal} / 受限 ${summary.premium}）`);
+log(`  常规版              ${normalOnly.length} 条 → dist/kvideo-normal.json`);
 log(`  粘贴版可导出        ${manual.length} 条`);

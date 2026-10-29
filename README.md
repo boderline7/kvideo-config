@@ -4,16 +4,16 @@
 
 ## 订阅地址
 
-### 三方汇总（推荐，去重后最全）
-
-| 版本 | 地址 |
-|---|---|
-| **汇总** | `https://raw.githubusercontent.com/boderline7/kvideo-config/main/dist/kvideo-merged.json` |
-| 汇总 · 加速 | `https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json` |
+| 版本 | 条数 | 地址 |
+|---|---:|---|
+| **全量**（含 18 开头的受限源） | 101 | `https://raw.githubusercontent.com/boderline7/kvideo-config/main/dist/kvideo-merged.json` |
+| **全量 · 加速** | 101 | `https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json` |
+| **常规**（不含受限源） | 61 | `https://raw.githubusercontent.com/boderline7/kvideo-config/main/dist/kvideo-normal.json` |
+| **常规 · 加速** | 61 | `https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-normal.json` |
 
 <!-- MERGE:START -->
 
-> 自动生成于 **2026-10-29 08:47 +08:00** ｜ 合计 **101** 个（常规 61 / 受限 40）
+> 自动生成于 **2026-10-29 09:03 +08:00** ｜ 合计 **101** 个（常规 61 / 受限 40）
 >
 > 本次：合并重复 106 条，剔除上游标注失效 101 条，排除 XML 接口 6 条
 
@@ -32,20 +32,12 @@
 3. 三个上游里有重复的只留一个 —— 去重认的是**请求地址**，不是域名，因为同一个域名下可能挂着两套不同的资源库；
 4. 受限分组同样以 `18` 开头命名。
 
-### 本仓库单独版本
+**用法**：KVideo → 设置 → 导入设置 → 订阅管理 → 填名称 + 粘贴上面任一地址 → 添加，然后在条目上点「立即更新」。
 
-| 版本 | 地址 |
-|---|---|
-| **全量**（74 个） | `https://raw.githubusercontent.com/boderline7/kvideo-config/main/dist/kvideo-sources.json` |
-| 全量 · 加速 | `https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-sources.json` |
-| **常规**（40 个） | `https://raw.githubusercontent.com/boderline7/kvideo-config/main/dist/kvideo-normal.json` |
-| 常规 · 加速 | `https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-normal.json` |
+**导入完对一下条数**：全量那份在设置页里应该是 **101** 条，常规是 **61** 条。
 
-**用法**：KVideo → 设置 → 导入设置 → 订阅管理 → 填名称 + 粘贴上面任一地址 → 添加。
-之后在订阅条目上点「立即更新」就能拿到最新列表。
-
-- **全量**：本仓库转换出的所有源。其中 `premium` 分组的源，名字统一以 `18` 开头，方便识别。
-- **常规**：只含 `normal` 分组的普通影视源。
+- 只有 **40** 条 → 订阅的就是旧的「常规」文件（地址没变，内容已换成汇总后的 61 条），点一下「立即更新」就会变 61；想要 101 条就再按上表添加全量那条。
+- **74** 条 → 订阅的是 `kvideo-sources.json`，那是 LunaTV 单家的全量转换，只当汇总输入用，换成上表地址即可。
 - raw 那个地址国内直连偶尔会卡，卡就换「加速」那条，内容完全一样。
 
 ## 更新机制
@@ -74,9 +66,9 @@ node scripts/verify.mjs     # 自检，应输出「全部通过」
 <!-- SOURCES:START -->
 
 <details>
-<summary>源清单（74 个，点击展开）</summary>
+<summary>源清单（74 个 · LunaTV 原始转换，汇总前，点击展开）</summary>
 
-> 生成于 **2026-10-29 08:47 +08:00** ｜ 上游：`fmynj/lunatv-config (raw)` ｜ 常规 40 / premium 34
+> 生成于 **2026-10-29 09:02 +08:00** ｜ 上游：`fmynj/lunatv-config (jsDelivr)` ｜ 常规 40 / premium 34
 
 | # | 名称 | id | 接口域名 | 分组 |
 |---:|---|---|---|:---:|
