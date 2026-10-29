@@ -1,29 +1,18 @@
 # kvideo-config
 
+把 [LunaTV / MoonTV 的源配置](https://github.com/fmynj/lunatv-config) 转成 [KVideo](https://github.com/kuekhaoyang/KVideo) 能直接读的格式，并与两个上游汇总去重，每天自动更新。本仓库不生产源，只做转换、去重、同步。
+
 ## 致谢
 
-先把出处写清楚：这里不生产任何源，全部来自下面这些项目与站点。
-
-| 谁 | 提供了什么 |
+| 出处 | 提供了什么 |
 |---|---|
-| [kuekhaoyang/KVideo](https://github.com/kuekhaoyang/KVideo) | 客户端本体，本仓库所有产物都是给它读的 |
-| [MoonTechLab/LunaTV](https://github.com/MoonTechLab/LunaTV) | MoonTV / LunaTV 体系，源配置格式的源头 |
-| [fmynj/lunatv-config](https://github.com/fmynj/lunatv-config) | 本仓库最初的源数据，转换的起点 |
-| [puppet680/KVideo-config](https://github.com/puppet680/KVideo-config) | 汇总上游之一 |
-| [335459215/kvideo-sources](https://github.com/335459215/kvideo-sources) | 汇总上游之一 |
-| 各采集站点 | 接口与内容本身，域名原样保留、不做改写 |
+| [kuekhaoyang/KVideo](https://github.com/kuekhaoyang/KVideo) | 客户端本体 |
+| [MoonTechLab/LunaTV](https://github.com/MoonTechLab/LunaTV) | 源配置格式 |
+| [fmynj/lunatv-config](https://github.com/fmynj/lunatv-config) | 初始源数据 |
+| [puppet680/KVideo-config](https://github.com/puppet680/KVideo-config) · [335459215/kvideo-sources](https://github.com/335459215/kvideo-sources) | 汇总上游 |
+| 各采集站点 | 接口与内容 |
 
-这里只做三件事：转换格式、去重、定时同步。内容和接口都归上面这些人和站点，用得顺手的话，Star 给原项目。
-
-## 这个仓库是什么
-
-给 [KVideo](https://github.com/kuekhaoyang/KVideo) 用的订阅源仓库：把 LunaTV / MoonTV 的配置转成 KVideo 能直接读的格式，再和另外两个上游汇总去重，每天自动更新一次。
-
-| 部分 | 内容 |
-|---|---|
-| **订阅** | 一个 JSON 地址，加进 KVideo 就是全部源；分全量与常规两版 |
-| **配置** | 服务端环境变量自动下发订阅，或页面里手动添加，两种方式都支持 |
-| **部署** | 官方镜像 `kuekhaoyang/kvideo:latest`，一条 `docker run`，只改端口和源 |
+内容和接口都归上面这些项目与站点，用得顺手就给原项目点个 Star。
 
 ## 订阅地址
 
@@ -39,61 +28,27 @@ https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-normal.jso
 https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-normal.json
 ```
 
-同一版本的三条只是 CDN 不同，内容完全一致；哪条能打开就用哪条。`raw` 最快但部分网络打不开，`gcore` 兼容性通常最好。
+同一版本的三条只是 CDN 不同，内容一致，哪条能打开就用哪条。
 
 <!-- MERGE:START -->
 
-> 自动生成于 **2026-10-29 11:33 +08:00** ｜ 合计 **101** 个（常规 61 / 受限 40）
+> 自动生成于 **2026-10-29 11:41 +08:00** ｜ 合计 **101** 个（常规 61 / 受限 40）
 >
 > 本次：合并重复 106 条，剔除上游标注失效 101 条，排除 XML 接口 6 条
 
 <!-- MERGE:END -->
 
-**汇总范围**：本仓库（LunaTV / MoonTV 转换）+ [puppet680/KVideo-config](https://github.com/puppet680/KVideo-config) + [335459215/kvideo-sources](https://github.com/335459215/kvideo-sources)。
-
-**汇总规则**：
-
-1. 上游标注失效的不收录，标注有效的照收；每天重跑，恢复后自动回来
-2. 重复的只留一个 —— 按**请求地址**去重，不按域名（同一域名下可能挂着不同资源库）
-3. 受限分组同样以 `18` 开头命名
+汇总规则：上游标失效的不收（每天重跑，恢复后自动回来）；重复的按**请求地址**去重，不按域名；受限分组名字同样以 `18` 开头。
 
 ## 在 KVideo 里添加
 
-1. 设置 → 导入设置 → 订阅管理
-2. 填名字、粘贴上面任一地址 → 添加
-3. 在订阅条目上点「立即更新」
+设置 → 导入设置 → 订阅管理 → 填名字、粘贴上面任一地址 → 添加，然后在条目上点「立即更新」。
 
-源数量以 JSON 里的 `count` 字段为准（每天会变，不用记具体数字），页面显示的数量与它一致就说明拉全了。
-
-名字以 `18` 开头的属于受限分组，只出现在**全量**里，并且只在 `/premium` 独立入口可见，普通页面不会出现。
-
-## 服务端配置（可选）
-
-把订阅写进容器环境变量，所有设备打开时都会自动带上这条订阅，不用手动添加 —— 部署时在 `docker run` 里加这一行：
-
-```bash
--e 'SUBSCRIPTION_SOURCES=[{"name":"汇总","url":"<上面任一地址>"}]'
-```
-
-- 多条就写成 JSON 数组，或用逗号分隔的纯 URL
-- 想看服务端实际下发了什么：`curl -s http://127.0.0.1:3000/api/auth`
-
-## 自动更新
-
-| 项目 | 说明 |
-|---|---|
-| 频率 | 每天北京时间 **04:10** 自动跑一次 |
-| 延迟 | GitHub 排队，可能晚几小时 |
-| 步骤 | 拉三个上游 → 转换 → 剔失效 → 去重 → 自检 → 提交 → 刷新 CDN 缓存 |
-| 手动 | 仓库页 → Actions → Update sources → Run workflow |
-
-**失效怎么判**：只认上游的标注 —— 对方 `disabled.json` 里列出的、或条目写着 `enabled: false` 的，本轮不收录。不做主动探测，避免机房 IP 被站点拦截造成误删；上游改回标注后，第二天自动回到列表。
-
-**想剔除某个源**：在 `config/overrides.json` 的 `exclude` 里加一条，下次生成时跳过。
+数量与 JSON 里的 `count` 字段一致即拉全（`count` 每天会变，不用记数字）。`18` 开头的受限源只在**全量**里，且仅 `/premium` 入口可见。
 
 ## 部署
 
-官方镜像，一条命令，订阅源已内置：
+官方镜像 `kuekhaoyang/kvideo:latest`，订阅已通过环境变量内置：
 
 ```bash
 docker run -d --name kvideo --restart unless-stopped -p 3000:3000 \
@@ -101,63 +56,48 @@ docker run -d --name kvideo --restart unless-stopped -p 3000:3000 \
   kuekhaoyang/kvideo:latest
 ```
 
-常用改动：
-
 | 改什么 | 怎么改 |
 |---|---|
-| 端口 | `-p 8080:3000`，冒号右边固定是容器的 3000 |
-| 订阅 | 替换 `SUBSCRIPTION_SOURCES` 里的 url；要常规版就换成 `kvideo-normal.json` |
+| 端口 | `-p 8080:3000`，冒号右边固定 3000 |
+| 版本 | url 末尾换成 `kvideo-normal.json` 即常规版 |
 | 重建 | 先 `docker rm -f kvideo`，再执行上面的命令 |
 
-### 部署后确认
+**确认部署成功**：
 
 ```bash
-curl -s http://127.0.0.1:3000/api/auth | grep -c kvideo-merged.json        # 1 = 订阅已下发
-curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:3000/settings    # 200 = 页面正常
+curl -s http://127.0.0.1:3000/api/auth | grep -c kvideo-merged.json       # 1 = 订阅已下发
+curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:3000/settings   # 200 = 页面正常
 ```
 
-浏览器打开 `http://<设备IP>:3000/settings`，在订阅上点「立即更新」，数量与 JSON 里的 `count` 一致即可。
+浏览器打开 `http://<设备IP>:3000/settings`，订阅上点「立即更新」，数量与 `count` 一致即可。
 
-### 其他安装方式
-
-**一行安装**：设备连不上某个 CDN 时用这个，脚本会依次试三条地址，取第一条能读到列表的。
+**其他方式**：设备连不上某个 CDN 时，用一行安装（自动试三条地址，选能通的）：
 
 ```bash
 curl -fsSL https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/deploy/install.sh | sh -s -- 3000
 ```
 
-`-- 3000` 是端口，后面还可以跟源地址、`--force`（重建同名容器）。
+或用 [deploy/docker-compose.yml](deploy/docker-compose.yml)：`docker compose up -d`。
 
-**docker compose**：把下面存成 `docker-compose.yml`，同目录执行 `docker compose up -d`。
+**交给 AI 部署**：直接把上面的 `docker run` 命令给它，并让它按「确认部署成功」那两行自检。
 
-```yaml
-services:
-  kvideo:
-    image: kuekhaoyang/kvideo:latest
-    container_name: kvideo
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    environment:
-      SUBSCRIPTION_SOURCES: '[{"name":"汇总","url":"https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json"}]'
-```
+## 自动更新
 
-### 交给 AI 部署
+每天北京时间 **04:10** 跑一次：拉三个上游 → 转换 → 剔失效 → 去重 → 自检 → 提交 → 刷 CDN 缓存。GitHub 排队可能晚几小时。手动触发：仓库页 → Actions → Update sources → Run workflow。
 
-> 在这台设备上用官方镜像 `kuekhaoyang/kvideo:latest` 起一个容器：`docker run -d --name kvideo --restart unless-stopped -p 3000:3000 -e 'SUBSCRIPTION_SOURCES=[{"name":"汇总","url":"https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json"}]' kuekhaoyang/kvideo:latest`。完成后确认 `curl -s http://127.0.0.1:3000/api/auth` 的输出里含 `kvideo-merged.json`、`/settings` 能正常打开、设置页里订阅更新后的数量与 JSON 里的 `count` 一致。失败先看 `docker logs --tail 50 kvideo`；订阅地址取不到就换 jsDelivr 或 raw 的同路径地址。
+## 常见问题
 
-### 部署常见问题
-
-**镜像拉不下来** — Docker Hub 直连不稳。给 Docker 配镜像加速，或在能拉通的机器 `docker save` 后 `docker load`。
-
-**容器起来了但订阅拉不到** — 设备访问不了那个域名。用 `curl -I` 逐个试上面三条地址，把能通的填进 `SUBSCRIPTION_SOURCES` 后重建。
-
-**改了端口或源** — 先 `docker rm -f kvideo` 再重新执行命令。源列表保存在浏览器本地，重建容器不会丢。
+| 问题 | 处理 |
+|---|---|
+| 镜像拉不下来 | 配 Docker 镜像加速，或 `docker save` / `load` 中转 |
+| 订阅拉不到 | 换上面另一条 CDN 地址，填进 `SUBSCRIPTION_SOURCES` 后重建 |
+| 改了端口或源 | `docker rm -f kvideo` 后重跑；源列表在浏览器本地，重建不会丢 |
+| 想剔除某个源 | 在 `config/overrides.json` 的 `exclude` 里加一条 |
 
 ## 目录结构
 
 ```text
-dist/         生成的订阅文件（KVideo 读的就是这里）
+dist/         生成的订阅文件（KVideo 读这里）
 scripts/      build 转换 / merge 汇总 / verify 自检
 config/       overrides 覆盖规则、renames 命名映射
 deploy/       一键脚本、docker-compose
@@ -166,19 +106,18 @@ deploy/       一键脚本、docker-compose
 
 ## 本地运行
 
-需要 Node.js 18+，零依赖，不用装包。
+需要 Node.js 18+，零依赖。
 
 ```bash
 node scripts/build.mjs      # 拉上游 → 转换 → 写 dist/ 和 README
-node scripts/merge.mjs      # 三方汇总去重（网络失败时用 cache/ 里的副本）
+node scripts/merge.mjs      # 三方汇总去重
 node scripts/verify.mjs     # 自检，应输出「全部通过」
 ```
 
 ## 说明
 
-- 只做格式转换与去重，不托管任何内容。
-- 接口域名原样保留（域名是连通必需，不能改写）；源名称里的标记统一用拼音缩写替代。
-- `dist/*-manual.json` 是**纯数组**格式，只给「导入设置 → JSON」粘贴用，不能当订阅地址。
+- 接口域名原样保留（改写就取不到数据），源名里的标记统一用拼音缩写替代。
+- `dist/*-manual.json` 是**纯数组**，只给「导入设置 → JSON」粘贴用，不能当订阅地址。
 
 ## 源清单
 
@@ -187,7 +126,7 @@ node scripts/verify.mjs     # 自检，应输出「全部通过」
 <details>
 <summary>源清单（74 个 · LunaTV 原始转换，汇总前，点击展开）</summary>
 
-> 生成于 **2026-10-29 09:02 +08:00** ｜ 上游：`fmynj/lunatv-config (jsDelivr)` ｜ 常规 40 / premium 34
+> 生成于 **2026-10-29 11:40 +08:00** ｜ 上游：`fmynj/lunatv-config (jsDelivr)` ｜ 常规 40 / premium 34
 
 | # | 名称 | id | 接口域名 | 分组 |
 |---:|---|---|---|:---:|
