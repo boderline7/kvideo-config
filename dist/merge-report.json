@@ -1,0 +1,254 @@
+{
+  "generated_at": "2026-10-29 08:45 +08:00",
+  "upstream": "本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources",
+  "inputs": {
+    "本仓库": {
+      "total": 74,
+      "from": "local"
+    },
+    "puppet680/KVideo-config": {
+      "total": 58,
+      "from": "network"
+    },
+    "335459215/kvideo-sources": {
+      "total": 182,
+      "from": "network"
+    }
+  },
+  "collected": 308,
+  "dropped_invalid": 101,
+  "merged_duplicates": 106,
+  "dropped_xml": 6,
+  "output": 101,
+  "normal": 61,
+  "premium": 40,
+  "manual_exportable": 90,
+  "invalid_samples": [
+    {
+      "host": "wolongzyw.com",
+      "reason": "接口解析错误/非JSON",
+      "from": "own"
+    },
+    {
+      "host": "api.wwzy.tv",
+      "reason": "接口解析错误/非JSON",
+      "from": "own"
+    },
+    {
+      "host": "p2100.net",
+      "reason": "HTTP 非200/宕机",
+      "from": "own"
+    },
+    {
+      "host": "wwzy.tv",
+      "reason": "接口解析错误/非JSON",
+      "from": "own"
+    },
+    {
+      "host": "lbapiby.com",
+      "reason": "HTTP 非200/宕机",
+      "from": "own"
+    },
+    {
+      "host": "www.yyzywcj.com",
+      "reason": "超时/宕机",
+      "from": "own"
+    },
+    {
+      "host": "api.bwzyz.com",
+      "reason": "超时/宕机",
+      "from": "own"
+    },
+    {
+      "host": "www.xxibaozyw.com",
+      "reason": "超时/宕机",
+      "from": "own"
+    },
+    {
+      "host": "www.xiangjiaozyw.com",
+      "reason": "超时/宕机",
+      "from": "own"
+    },
+    {
+      "host": "caiji.semaozy.net",
+      "reason": "列表为空",
+      "from": "own"
+    },
+    {
+      "host": "wolongzyw.com",
+      "reason": "接口解析错误/非JSON",
+      "from": "p680"
+    },
+    {
+      "host": "api.wwzy.tv",
+      "reason": "接口解析错误/非JSON",
+      "from": "p680"
+    },
+    {
+      "host": "p2100.net",
+      "reason": "HTTP 非200/宕机",
+      "from": "p680"
+    },
+    {
+      "host": "lbapiby.com",
+      "reason": "HTTP 非200/宕机",
+      "from": "p680"
+    },
+    {
+      "host": "www.yyzywcj.com",
+      "reason": "超时/宕机",
+      "from": "p680"
+    },
+    {
+      "host": "api.bwzyz.com",
+      "reason": "超时/宕机",
+      "from": "p680"
+    },
+    {
+      "host": "caiji.semaozy.net",
+      "reason": "列表为空",
+      "from": "p680"
+    },
+    {
+      "host": "api.dmku.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "api.docv.cc",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "wolongzyw.com",
+      "reason": "接口解析错误/非JSON",
+      "from": "k335"
+    },
+    {
+      "host": "api.gaoqing.top",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "api.ystian.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "wwzy.tv",
+      "reason": "接口解析错误/非JSON",
+      "from": "k335"
+    },
+    {
+      "host": "app.bfzyapi.com",
+      "reason": "HTTP 非200/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "api.wwzy.tv",
+      "reason": "接口解析错误/非JSON",
+      "from": "k335"
+    },
+    {
+      "host": "collect.wolongzyw.com",
+      "reason": "接口解析错误/非JSON",
+      "from": "k335"
+    },
+    {
+      "host": "collect.wolongzy.cc",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "p2100.net",
+      "reason": "HTTP 非200/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "caiji.putaozy.net",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "www.yyzywcj.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "pz.v88.qzz.io",
+      "reason": "HTTP 非200/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "kkzy.me",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "pz.v88.qzz.io",
+      "reason": "HTTP 非200/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "www.ggmmzy.com:9999",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "dadiapi.com",
+      "reason": "接口解析错误/非JSON",
+      "from": "k335"
+    },
+    {
+      "host": "xx55zyapi.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "api.apilyzy.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "caiji.huakuiapi.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "kaiyunzy5.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "jgczyapi.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    }
+  ],
+  "xml_samples": [
+    {
+      "from": "335459215/kvideo-sources",
+      "url": "https://www.xrbsp.com/api/xml.php"
+    },
+    {
+      "from": "335459215/kvideo-sources",
+      "url": "https://www.pgxdy.com/api/xml.php"
+    },
+    {
+      "from": "335459215/kvideo-sources",
+      "url": "https://www.gdlsp.com/api/xml.php"
+    },
+    {
+      "from": "335459215/kvideo-sources",
+      "url": "https://www.kxgav.com/api/xml.php"
+    },
+    {
+      "from": "335459215/kvideo-sources",
+      "url": "https://www.afasu.com/api/xml.php"
+    },
+    {
+      "from": "335459215/kvideo-sources",
+      "url": "https://www.msnii.com/api/xml.php"
+    }
+  ]
+}

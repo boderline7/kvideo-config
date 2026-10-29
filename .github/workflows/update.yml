@@ -28,6 +28,11 @@ jobs:
       - name: Build
         run: node scripts/build.mjs
 
+      # 三方汇总：本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources
+      # 上游标注失效的不收录，标注有效的收录；按请求地址去重
+      - name: Merge
+        run: node scripts/merge.mjs
+
       - name: Verify
         run: node scripts/verify.mjs
 

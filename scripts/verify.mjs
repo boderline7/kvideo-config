@@ -13,8 +13,8 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
 
-const SUB_FILES = ['kvideo-sources.json', 'kvideo-normal.json'];
-const PASTE_FILE = 'kvideo-sources-manual.json';
+const SUB_FILES = ['kvideo-sources.json', 'kvideo-normal.json', 'kvideo-merged.json'];
+const PASTE_FILES = ['kvideo-sources-manual.json', 'kvideo-merged-manual.json'];
 const STALE = ['status.json', 'kvideo-premium.json'];
 
 let failures = 0;
@@ -111,7 +111,7 @@ for (const file of files.filter((f) => SUB_FILES.includes(f))) {
   checkCommon(sources, file);
 }
 
-if (files.includes(PASTE_FILE)) {
+for (const PASTE_FILE of PASTE_FILES.filter((f) => files.includes(f))) {
   console.log(`\n${PASTE_FILE}  （JSON 粘贴路径）`);
   const raw = await fs.readFile(path.join(DIST, PASTE_FILE), 'utf8');
   let sources;

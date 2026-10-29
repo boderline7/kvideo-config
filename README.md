@@ -1,8 +1,38 @@
 # kvideo-config
 
-把 [LunaTV / MoonTV 的源配置](https://github.com/fmynj/lunatv-config) 转换成 **KVideo 能直接订阅的源**，每天自动同步。
+把 [LunaTV / MoonTV 的源配置](https://github.com/fmynj/lunatv-config) 转换成 **KVideo 能直接订阅的源**，并把三个上游的源汇总去重，每天自动同步。
 
 ## 订阅地址
+
+### 三方汇总（推荐，去重后最全）
+
+| 版本 | 地址 |
+|---|---|
+| **汇总** | `https://raw.githubusercontent.com/boderline7/kvideo-config/main/dist/kvideo-merged.json` |
+| 汇总 · 加速 | `https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json` |
+
+<!-- MERGE:START -->
+
+> 自动生成于 **2026-10-29 08:45 +08:00** ｜ 合计 **101** 个（常规 61 / 受限 40）
+>
+> 本次：合并重复 106 条，剔除上游标注失效 101 条，排除 XML 接口 6 条
+
+<!-- MERGE:END -->
+
+汇总范围：
+
+- 本仓库（由 LunaTV / MoonTV 配置转换）
+- [puppet680/KVideo-config](https://github.com/puppet680/KVideo-config)
+- [335459215/kvideo-sources](https://github.com/335459215/kvideo-sources)
+
+汇总规则：
+
+1. **对方标注失效的不收录**（对方有巡检记录的，按其失效名单剔除）；
+2. **标注有效的照收**，每天重新跑一次，上游恢复后自动回到列表；
+3. 三个上游里有重复的只留一个 —— 去重认的是**请求地址**，不是域名，因为同一个域名下可能挂着两套不同的资源库；
+4. 受限分组同样以 `18` 开头命名。
+
+### 本仓库单独版本
 
 | 版本 | 地址 |
 |---|---|
@@ -14,20 +44,20 @@
 **用法**：KVideo → 设置 → 导入设置 → 订阅管理 → 填名称 + 粘贴上面任一地址 → 添加。
 之后在订阅条目上点「立即更新」就能拿到最新列表。
 
-- **全量**：上游所有源都收录。其中 `premium` 分组的源，名字统一以 `18` 开头，方便识别。
+- **全量**：本仓库转换出的所有源。其中 `premium` 分组的源，名字统一以 `18` 开头，方便识别。
 - **常规**：只含 `normal` 分组的普通影视源。
 - raw 那个地址国内直连偶尔会卡，卡就换「加速」那条，内容完全一样。
 
 ## 更新机制
 
-每天北京时间 **04:10** 自动拉上游 → 转换 → 提交，订阅地址不变，内容每天刷新。
+每天北京时间 **04:10** 自动拉上游 → 转换 → 汇总去重 → 提交，订阅地址不变，内容每天刷新。
 手动跑一次：仓库页 → Actions → Update sources → Run workflow。
 
 ## 说明
 
-- 只做格式转换，不探测、不筛选、不托管任何内容。
-- 上游接口域名原样保留（域名是连通必需，不能改写）；源名称里的标记统一用拼音缩写替代。
-- `dist/kvideo-sources-manual.json` 是**纯数组**格式，只给「导入设置 → JSON」粘贴用，不能拿来当订阅地址。
+- 只做格式转换与去重，不托管任何内容。
+- 接口域名原样保留（域名是连通必需，不能改写）；源名称里的标记统一用拼音缩写替代。
+- `dist/kvideo-sources-manual.json`、`dist/kvideo-merged-manual.json` 是**纯数组**格式，只给「导入设置 → JSON」粘贴用，不能拿来当订阅地址。
 
 ## 本地运行
 
@@ -35,6 +65,7 @@
 
 ```bash
 node scripts/build.mjs      # 拉上游 → 转换 → 写 dist/ 和 README
+node scripts/merge.mjs      # 三方汇总去重（失败时自动用 cache/ 里的副本）
 node scripts/verify.mjs     # 自检，应输出「全部通过」
 ```
 
@@ -45,7 +76,7 @@ node scripts/verify.mjs     # 自检，应输出「全部通过」
 <details>
 <summary>源清单（74 个，点击展开）</summary>
 
-> 生成于 **2026-10-29 07:59 +08:00** ｜ 上游：`fmynj/lunatv-config (raw)` ｜ 常规 40 / premium 34
+> 生成于 **2026-10-29 08:44 +08:00** ｜ 上游：`fmynj/lunatv-config (jsDelivr)` ｜ 常规 40 / premium 34
 
 | # | 名称 | id | 接口域名 | 分组 |
 |---:|---|---|---|:---:|

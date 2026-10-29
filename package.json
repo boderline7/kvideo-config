@@ -11,7 +11,10 @@
     "build": "node scripts/build.mjs",
     "build:probe": "node scripts/build.mjs --probe",
     "convert": "node scripts/convert.mjs",
-    "verify": "node scripts/verify.mjs"
+    "merge": "node scripts/merge.mjs",
+    "merge:offline": "node scripts/merge.mjs --offline",
+    "verify": "node scripts/verify.mjs",
+    "all": "node scripts/build.mjs && node scripts/merge.mjs && node scripts/verify.mjs"
   },
   "license": "MIT"
 }
