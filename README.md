@@ -71,27 +71,42 @@ KVideo 的源列表、观看历史、收藏都存在各自浏览器的 localStor
 
 ## Docker 部署
 
-官方镜像 `kuekhaoyang/kvideo:latest`，要设的只有两样：**端口**、**订阅源**。
-
-### 一键脚本
+官方镜像 `kuekhaoyang/kvideo:latest`，一条命令即可（已内置汇总源，101 条）：
 
 ```bash
-git clone https://github.com/boderline7/kvideo-config.git
-cd kvideo-config
-
-sh deploy/install.sh                    # 3000 端口 + 自动选源
-sh deploy/install.sh 8080               # 换端口
-sh deploy/install.sh 8080 <源地址>       # 端口、源都指定
-sh deploy/install.sh --force            # 同名容器已存在时重建
+docker run -d --name kvideo --restart unless-stopped -p 3000:3000 \
+  -e 'SUBSCRIPTION_SOURCES=[{"name":"汇总","url":"https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json"}]' \
+  kuekhaoyang/kvideo:latest
 ```
 
-脚本做四件事：检查 Docker → 依次试上表三条订阅地址、用第一条能取到列表的 → 起容器（`restart unless-stopped`）→ 等就绪并自检订阅是否挂上。
+- 换端口：只改 `-p` 左边，右边始终是容器的 3000，例如 `-p 8080:3000`
+- 换源：改 `SUBSCRIPTION_SOURCES` 里的地址，见上面订阅地址表；只要常规 61 条就把文件名换成 `kvideo-normal.json`
+- 已有同名容器：先 `docker rm -f kvideo` 再执行（源列表存在浏览器本地，重建容器不会丢）
 
-### docker compose
+### 可选：一行安装（自动挑能通的地址）
+
+设备可能连不上某个 CDN，这个脚本会依次试三条地址，用第一条取到列表的：
 
 ```bash
-cd deploy
-docker compose up -d
+curl -fsSL https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/deploy/install.sh | sh -s -- 3000
+```
+
+`-- 3000` 是端口，也可以跟源地址、`--force`（重建同名容器）。
+
+### 可选：docker compose
+
+把下面内容存成 `docker-compose.yml`，同目录执行 `docker compose up -d`：
+
+```yaml
+services:
+  kvideo:
+    image: kuekhaoyang/kvideo:latest
+    container_name: kvideo
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      SUBSCRIPTION_SOURCES: '[{"name":"汇总","url":"https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json"}]'
 ```
 
 ### 装完自检
@@ -105,17 +120,13 @@ curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:3000/settings    # 200
 
 ### 给 AI / Agent 的部署指令
 
-> 在这台设备上用官方镜像 `kuekhaoyang/kvideo:latest` 部署 KVideo，只设两样：端口 3000、订阅源用本仓库汇总地址。执行 `sh deploy/install.sh`；完成后确认 `/api/auth` 含 `kvideo-merged.json`、`/settings` 返回 200、订阅更新后 101 条。失败看 `docker logs --tail 50 kvideo`，不要重复 `docker run` 叠加容器。
+> 在这台设备上用官方镜像 `kuekhaoyang/kvideo:latest` 起一个容器：`docker run -d --name kvideo --restart unless-stopped -p 3000:3000 -e 'SUBSCRIPTION_SOURCES=[{"name":"汇总","url":"https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json"}]' kuekhaoyang/kvideo:latest`。完成后确认 `curl -s http://127.0.0.1:3000/api/auth` 返回内容含 `kvideo-merged.json`、`/settings` 返回 200、订阅更新后 101 条。失败看 `docker logs --tail 50 kvideo`；地址取不到就换成 jsDelivr 或 raw 的同路径地址。
 
 ### 部署常见问题
 
 **镜像拉不下来** — Docker Hub 直连不稳时给 Docker 配镜像加速，或在能拉通的机器 `docker save` 后 `docker load`。
 
-**换端口** — 只改 `-p` 左边，右边始终是容器的 3000，例如 `-p 8080:3000`。
-
 **容器起来了但订阅拉不到** — 设备访问不了那个域名。用 `curl -I` 逐个试上表三条地址，把能通的填进 `SUBSCRIPTION_SOURCES` 后重建。
-
-**改了源或端口** — `docker rm -f kvideo` 后重跑脚本；源列表在浏览器本地，重建容器不会丢。
 
 ## 说明
 
