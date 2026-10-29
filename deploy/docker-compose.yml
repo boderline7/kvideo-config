@@ -1,8 +1,8 @@
-# KVideo 部署（官方镜像）
+# KVideo 部署（官方镜像 kuekhaoyang/kvideo:latest）
 #   docker compose up -d
 #   docker compose down
 #
-# 三处可调：端口、源、访问密码。
+# 只设两样：端口、订阅源。
 services:
   kvideo:
     image: kuekhaoyang/kvideo:latest
@@ -11,17 +11,9 @@ services:
     ports:
       - "3000:3000"
     environment:
-      # 源：本仓库汇总列表（101 条）。国内通常只有 gcore 通，取不到就换下面注释里任一地址
+      # 汇总列表（101 条 = 常规 61 + 受限 40）
       SUBSCRIPTION_SOURCES: '[{"name":"汇总","url":"https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json"}]'
-      # 备用：https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json
-      # 备用：https://raw.githubusercontent.com/boderline7/kvideo-config/main/dist/kvideo-merged.json
-      # 只要常规 61 条：把 url 换成 dist/kvideo-normal.json
-
-      # 登录密码：去掉下面这行前面的 #，把值改成自己的。不设则任何人打开就能用。
-      # ADMIN_PASSWORD: "换成你的密码"
-
-      # 高级内容（/premium）独立密码，可选。不设则跟主密码共用权限。
-      # PREMIUM_PASSWORD: "换成另一个密码"
-
-      # 关掉浏览器后是否保留登录状态，默认 true
-      # PERSIST_SESSION: "true"
+      # 换其他地址：
+      #   https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json
+      #   https://raw.githubusercontent.com/boderline7/kvideo-config/main/dist/kvideo-merged.json
+      # 只要常规 61 条：把文件名换成 kvideo-normal.json

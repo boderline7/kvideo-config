@@ -7,9 +7,13 @@
 | 版本 | 条数 | 地址 |
 |---|---:|---|
 | **全量**（含 18 开头的受限源） | 101 | `https://raw.githubusercontent.com/boderline7/kvideo-config/main/dist/kvideo-merged.json` |
-| **全量 · 加速** | 101 | `https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json` |
+| 全量 · jsDelivr | 101 | `https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json` |
+| 全量 · gcore | 101 | `https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json` |
 | **常规**（不含受限源） | 61 | `https://raw.githubusercontent.com/boderline7/kvideo-config/main/dist/kvideo-normal.json` |
-| **常规 · 加速** | 61 | `https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-normal.json` |
+| 常规 · jsDelivr | 61 | `https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-normal.json` |
+| 常规 · gcore | 61 | `https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-normal.json` |
+
+三条地址内容完全相同，只是 CDN 不同；哪条能打开就用哪条。
 
 <!-- MERGE:START -->
 
@@ -44,8 +48,7 @@
 |---:|---|
 | **101** | 正常，全量 |
 | **61** | 正常，常规 |
-| 40 | 订阅的是旧的常规文件，点「立即更新」变 61；想要全量就再加一条全量地址 |
-| 74 | 订阅的是 `kvideo-sources.json`（LunaTV 单家转换，仅供核对），换成上表地址 |
+| 其他数字 | 地址不是上表里的文件，换回上表地址重新添加 |
 
 名字以 `18` 开头的 40 条属于受限分组，只出现在**全量**里；它们在 KVideo 的独立入口 `/premium`，与普通内容完全隔离，普通页面不会出现。
 
@@ -60,115 +63,59 @@
 
 **失效怎么判**：只认上游的标注 —— 对方 `disabled.json` 里列出的、或条目写着 `enabled: false` 的，本轮不收录。没被标注、但实际已经挂掉的接口会留在列表里（本仓库不做主动探测，避免机房 IP 被拦造成误删）。上游改回标注后，第二天自动回到列表。
 
-## 源列表存在哪（重要）
+**想手动剔除某个源**：提 issue，或在 `config/overrides.json` 的 `exclude` 里加一条，下次生成时跳过。
 
-订阅地址由服务端下发，**源列表存在你当前这台设备的浏览器里**，不是存在服务器上：
+## 关于本地数据
 
-| 内容 | 位置 |
-|---|---|
-| 订阅地址 | 服务器环境变量 / 本 README |
-| 源列表、开关、排序 | 当前浏览器 localStorage |
-| 观看历史、收藏 | 当前浏览器 localStorage |
+KVideo 的源列表、观看历史、收藏都存在各自浏览器的 localStorage 里，服务端只下发订阅地址。因此每台设备独立一份：首次打开按订阅拉取当天清单；订阅更新是合并方式（新增、覆盖同 id），清单里已被移除的源不会自动从旧设备消失，清空源列表后重新拉取即可对齐。
 
-订阅更新是**合并**方式：新源加入、同 id 的更新字段，**已从清单里删掉的源不会自动消失**。带来的结果：
+## Docker 部署
 
-- 新设备第一次打开 → 拿到的就是当天这份清单，完全一致；
-- 用过的设备 → 会残留以前的旧源，条数比清单多；
-- 手机和电脑两份列表互相独立，各拉各的。
+官方镜像 `kuekhaoyang/kvideo:latest`，要设的只有两样：**端口**、**订阅源**。
 
-想让它和本文清单完全对齐，两条路：
-
-**A. 无痕窗口**（最省事）
-
-每次用无痕窗口打开，本地是空的，等于新设备，直接拉到当天清单。代价是历史和收藏不保留。
-
-**B. 重置脚本**（普通模式也能干净）
-
-KVideo 页面按 F12 → Console，粘贴执行：
-
-```js
-const k = 'kvideo-settings';
-const r = JSON.parse(localStorage.getItem(k) || '{}');
-r.state.sources = [];
-r.state.premiumSources = [];
-r.state.subscriptions = (r.state.subscriptions || []).map((s) => ({ ...s, lastUpdated: 0 }));
-localStorage.setItem(k, JSON.stringify(r));
-location.reload();
-```
-
-刷新后会按订阅重新拉一遍，结果与本文清单一致。注意：自己手动加过的源会被清掉。
-
-## 常见问题
-
-**订阅删不掉，删了刷新又回来** — 订阅地址写在服务端环境变量 `SUBSCRIPTION_SOURCES` 里，每次读设置都会被补回，属于设计如此。要去掉只能在服务器上改环境变量。
-
-**「加速」地址拿到旧内容** — jsDelivr 边缘节点缓存 12 小时。workflow 每次推送后已主动 purge；仍不生效就在地址后加个 `?v=2` 强制取新。raw 地址只缓存 5 分钟。
-
-**手机和电脑列表不一样** — 见上一节，属于本地存储机制，不是同步出错。
-
-**想手动踢掉某个源** — 提 issue，或在 `config/overrides.json` 的 `exclude` 里加一条，下次生成时跳过。
-
-## Docker 一键部署（官方镜像）
-
-用 KVideo 官方镜像 `kuekhaoyang/kvideo:latest`，**三个可调项：端口、源、登录密码**。
+### 一键脚本
 
 ```bash
 git clone https://github.com/boderline7/kvideo-config.git
 cd kvideo-config
 
-sh deploy/install.sh                            # 3000 端口 + 自动选源，不设密码
-sh deploy/install.sh 8080                       # 换端口
-sh deploy/install.sh 8080 <源地址>               # 端口和源都指定
-sh deploy/install.sh --password 你的密码          # 设置登录密码（推荐）
-sh deploy/install.sh --password 你的密码 --premium 另一个密码   # 高级内容再单独设一道
-sh deploy/install.sh --force                    # 重建同名容器
+sh deploy/install.sh                    # 3000 端口 + 自动选源
+sh deploy/install.sh 8080               # 换端口
+sh deploy/install.sh 8080 <源地址>       # 端口、源都指定
+sh deploy/install.sh --force            # 同名容器已存在时重建
 ```
 
-不指定源时，脚本按 `gcore` → `jsDelivr` → `raw` 试一遍，用能通的那条（国内通常只有 `gcore` 通）。
+脚本做四件事：检查 Docker → 依次试上表三条订阅地址、用第一条能取到列表的 → 起容器（`restart unless-stopped`）→ 等就绪并自检订阅是否挂上。
 
-compose 方式：`cd deploy && docker compose up -d`（密码在 compose 文件里取消注释填写）。
-
-### 登录密码（访问认证）
-
-KVideo 默认**不设密码时谁打开都能用**，同一个网络里的人直接输 IP 就能进。要加锁只加一个环境变量：
-
-| 变量 | 作用 |
-|---|---|
-| `ADMIN_PASSWORD` | 登录密码，登录后就是超级管理员，能管源和设置 |
-| `PREMIUM_PASSWORD` | 只给 `/premium` 高级内容加的独立密码，可选 |
-| `PERSIST_SESSION` | 默认 `true`，关掉浏览器后再打开不用重输；设 `false` 则每次重新登录 |
+### docker compose
 
 ```bash
-sh deploy/install.sh --password 你的密码
+cd deploy
+docker compose up -d
 ```
-
-装完打开页面会先出现登录框，输入这个密码才进得去。密码只在容器启动时读取，**改密码要重建容器**（`--force` 再跑一次）。
-
-如果家里多个人用、还想各看各的收藏和历史，可以改用多账户 `ACCOUNTS`（格式 `用户名:密码:名称:角色`，角色选 `admin` 或 `viewer`），数据按账户隔离；这条参数本脚本没做，需要时手动加 `-e`。
 
 ### 装完自检
 
 ```bash
-curl -s http://127.0.0.1:3000/api/auth | grep -o kvideo-merged.json        # 有输出 = 源已挂
-curl -s http://127.0.0.1:3000/api/auth | grep -o '"hasAuth":[a-z]*'         # true = 密码已生效
+curl -s http://127.0.0.1:3000/api/auth | grep -o kvideo-merged.json        # 有输出 = 订阅已挂
 curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:3000/settings    # 200
 ```
 
 浏览器打开 `http://<设备IP>:3000/settings` → 订阅点「立即更新」→ 应为 **101** 条。
 
-### 给 AI 的指令
+### 给 AI / Agent 的部署指令
 
-> 用官方镜像 `kuekhaoyang/kvideo:latest` 部署 KVideo，设三样：端口 3000、源用本仓库汇总地址、登录密码用我给你的那个。执行 `sh deploy/install.sh --password <我给的密码>`；完成后确认 `/api/auth` 含 `kvideo-merged.json` 且 `"hasAuth":true`、`/settings` 返回 200、打开页面会要求登录、订阅更新后 101 条。失败看 `docker logs --tail 50 kvideo`，不要重复 `docker run` 叠加容器。
+> 在这台设备上用官方镜像 `kuekhaoyang/kvideo:latest` 部署 KVideo，只设两样：端口 3000、订阅源用本仓库汇总地址。执行 `sh deploy/install.sh`；完成后确认 `/api/auth` 含 `kvideo-merged.json`、`/settings` 返回 200、订阅更新后 101 条。失败看 `docker logs --tail 50 kvideo`，不要重复 `docker run` 叠加容器。
 
 ### 部署常见问题
 
-**镜像拉不下来** — Docker Hub 国内直连不稳。给 Docker 配镜像加速，或在能拉通的机器 `docker save` 后 `docker load`。
+**镜像拉不下来** — Docker Hub 直连不稳时给 Docker 配镜像加速，或在能拉通的机器 `docker save` 后 `docker load`。
 
 **换端口** — 只改 `-p` 左边，右边始终是容器的 3000，例如 `-p 8080:3000`。
 
-**忘了登录密码** — 密码是启动参数，容器里查不到明文补救。用 `docker inspect kvideo` 看当前 `SUBSCRIPTION_SOURCES`，然后用 `sh deploy/install.sh --force --password 新密码` 重建，源不会丢。
+**容器起来了但订阅拉不到** — 设备访问不了那个域名。用 `curl -I` 逐个试上表三条地址，把能通的填进 `SUBSCRIPTION_SOURCES` 后重建。
 
-**设了密码后手机连不上** — 页面会先弹登录框，输一次即可；`PERSIST_SESSION=false` 时每次打开都要重新输。
+**改了源或端口** — `docker rm -f kvideo` 后重跑脚本；源列表在浏览器本地，重建容器不会丢。
 
 ## 说明
 
