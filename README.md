@@ -1,6 +1,23 @@
 # kvideo-config
 
-给 [KVideo](https://github.com/kuekhaoyang/KVideo) 用的订阅源仓库：把 [LunaTV / MoonTV 的配置](https://github.com/fmynj/lunatv-config) 转成 KVideo 能直接读的格式，再和另外两个上游汇总去重，每天自动更新一次。
+## 致谢
+
+先把出处写清楚：这里不生产任何源，全部来自下面这些项目与站点。
+
+| 谁 | 提供了什么 |
+|---|---|
+| [kuekhaoyang/KVideo](https://github.com/kuekhaoyang/KVideo) | 客户端本体，本仓库所有产物都是给它读的 |
+| [MoonTechLab/LunaTV](https://github.com/MoonTechLab/LunaTV) | MoonTV / LunaTV 体系，源配置格式的源头 |
+| [fmynj/lunatv-config](https://github.com/fmynj/lunatv-config) | 本仓库最初的源数据，转换的起点 |
+| [puppet680/KVideo-config](https://github.com/puppet680/KVideo-config) | 汇总上游之一 |
+| [335459215/kvideo-sources](https://github.com/335459215/kvideo-sources) | 汇总上游之一 |
+| 各采集站点 | 接口与内容本身，域名原样保留、不做改写 |
+
+这里只做三件事：转换格式、去重、定时同步。内容和接口都归上面这些人和站点，用得顺手的话，Star 给原项目。
+
+## 这个仓库是什么
+
+给 [KVideo](https://github.com/kuekhaoyang/KVideo) 用的订阅源仓库：把 LunaTV / MoonTV 的配置转成 KVideo 能直接读的格式，再和另外两个上游汇总去重，每天自动更新一次。
 
 | 部分 | 内容 |
 |---|---|
