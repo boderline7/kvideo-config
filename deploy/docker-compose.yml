@@ -1,0 +1,25 @@
+# KVideo 部署配置
+# 用法：
+#   docker compose up -d
+#   docker compose logs -f
+#   docker compose down
+#
+# 订阅地址已经内置，起容器后自动带上本仓库的汇总源（101 条）。
+services:
+  kvideo:
+    image: kuekhaoyang/kvideo:latest
+    container_name: kvideo
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      TZ: Asia/Shanghai
+      # 合并同名源显示，多个源的同名影片合成一个卡片
+      MERGE_SOURCES: "true"
+      # 允许同局域网设备用本机 IP 访问
+      ALLOW_LAN_ACCESS: "true"
+      # 自动订阅：本仓库汇总源。取不到 gcore 就换成下面注释里的任一地址
+      SUBSCRIPTION_SOURCES: '[{"name":"汇总","url":"https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json"}]'
+      # 备用：https://cdn.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json
+      # 备用：https://raw.githubusercontent.com/boderline7/kvideo-config/main/dist/kvideo-merged.json
+      # 只要常规 61 条，把上面 url 换成 dist/kvideo-normal.json

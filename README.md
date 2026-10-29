@@ -108,6 +108,76 @@ location.reload();
 
 **想手动踢掉某个源** — 提 issue，或在 `config/overrides.json` 的 `exclude` 里加一条，下次生成时跳过。
 
+## Docker 一键部署
+
+把 KVideo 装在自己的设备上（路由器、NAS、小主机都行），装完自动带上本仓库的汇总源。
+
+前置：设备上已装 Docker 并能跑起来（`docker info` 有输出）。
+
+### 方式一：脚本（推荐）
+
+```bash
+git clone https://github.com/boderline7/kvideo-config.git
+cd kvideo-config
+sh deploy/install.sh                # 默认 3000 端口
+sh deploy/install.sh 8080           # 指定端口
+sh deploy/install.sh 3000 --force   # 已有同名容器时删掉重建
+```
+
+脚本做四件事：检查 Docker → 按 `gcore` → `jsDelivr` → `raw` 的顺序试订阅地址、挑第一个能返回列表的 → 起容器（`restart unless-stopped`）→ 等就绪并自检订阅是否挂上。
+
+### 方式二：docker compose
+
+```bash
+cd deploy
+docker compose up -d      # 起
+docker compose logs -f    # 看日志
+docker compose down       # 停
+```
+
+### 方式三：一条命令
+
+```bash
+docker run -d \
+  --name kvideo \
+  --restart unless-stopped \
+  -p 3000:3000 \
+  -e TZ=Asia/Shanghai \
+  -e MERGE_SOURCES=true \
+  -e ALLOW_LAN_ACCESS=true \
+  -e 'SUBSCRIPTION_SOURCES=[{"name":"汇总","url":"https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-merged.json"}]' \
+  kuekhaoyang/kvideo:latest
+```
+
+### 装完自检
+
+```bash
+curl -s http://127.0.0.1:3000/api/auth | grep -o kvideo-merged.json   # 有输出 = 订阅已挂
+curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:3000/settings   # 200
+docker logs --tail 30 kvideo                                          # 无报错
+```
+
+浏览器打开 `http://<设备IP>:3000/settings` → 订阅上点「立即更新」，源列表应为 **101** 条。
+
+### 给 AI / Agent 的部署指令
+
+> 在这台设备上部署 KVideo，按顺序执行，每步确认结果再继续：
+>
+> 1. `docker info` 确认 Docker 可用；确认 3000 端口空闲（`ss -ltnp | grep :3000` 或 `netstat -ltnp | grep :3000`）。
+> 2. 拉本仓库，执行 `sh deploy/install.sh`；若已有同名容器，加 `--force`（不要手动 `docker run` 叠加容器）。
+> 3. 订阅地址由脚本自动挑选（`gcore` → `jsDelivr` → `raw`），不要手动改成别的镜像。
+> 4. 验证：`curl -s http://127.0.0.1:3000/api/auth` 返回的 `subscriptionSources` 里含 `kvideo-merged.json`；`/settings` 返回 200。
+> 5. 打开设置页 → 订阅管理 →「立即更新」，确认源数量为 **101**（其中受限分组 40 条只在 `/premium` 入口可见）。
+> 6. 失败先看 `docker logs --tail 50 kvideo`；镜像拉不动就配置 Docker 镜像加速后重试。
+
+### 部署常见问题
+
+**镜像拉不下来** — Docker Hub 国内直连不稳。给 Docker 配镜像加速，或在能拉通的机器上 `docker save` 再 `docker load`。
+
+**容器起来了但订阅拉不到** — 设备访问不了那个域名。用 `curl -I` 逐个试上表三条地址，把能通的填进 `SUBSCRIPTION_SOURCES`。国内常见是只有 `gcore.jsdelivr.net` 通。
+
+**换端口** — 只改 `-p` 左边，右边始终是容器的 3000，例如 `-p 8080:3000`。
+
 ## 说明
 
 - 只做格式转换与去重，不托管任何内容。
