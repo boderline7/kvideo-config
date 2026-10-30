@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30 07:55 +08:00",
+  "generated_at": "2026-10-31 07:41 +08:00",
   "upstream": "本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources",
   "inputs": {
     "本仓库": {
@@ -16,13 +16,13 @@
     }
   },
   "collected": 308,
-  "dropped_invalid": 109,
-  "merged_duplicates": 102,
+  "dropped_invalid": 103,
+  "merged_duplicates": 104,
   "dropped_xml": 6,
-  "output": 97,
-  "normal": 58,
-  "premium": 39,
-  "manual_exportable": 86,
+  "output": 101,
+  "normal": 61,
+  "premium": 40,
+  "manual_exportable": 90,
   "invalid_samples": [
     {
       "host": "caiji.dbzy5.com",
@@ -57,11 +57,6 @@
     {
       "host": "www.yyzywcj.com",
       "reason": "超时/宕机",
-      "from": "own"
-    },
-    {
-      "host": "hsckzy.xyz",
-      "reason": "HTTP 非200/宕机",
       "from": "own"
     },
     {
@@ -115,11 +110,6 @@
       "from": "p680"
     },
     {
-      "host": "hsckzy.xyz",
-      "reason": "HTTP 非200/宕机",
-      "from": "p680"
-    },
-    {
       "host": "api.bwzyz.com",
       "reason": "超时/宕机",
       "from": "p680"
@@ -132,11 +122,6 @@
     {
       "host": "caiji.dbzy5.com",
       "reason": "超时/宕机",
-      "from": "k335"
-    },
-    {
-      "host": "ffzy1.tv",
-      "reason": "HTTP 非200/宕机",
       "from": "k335"
     },
     {
@@ -167,11 +152,6 @@
     {
       "host": "wwzy.tv",
       "reason": "接口解析错误/非JSON",
-      "from": "k335"
-    },
-    {
-      "host": "app.bfzyapi.com",
-      "reason": "HTTP 非200/宕机",
       "from": "k335"
     },
     {
@@ -221,6 +201,26 @@
     },
     {
       "host": "www.ggmmzy.com:9999",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "dadiapi.com",
+      "reason": "接口解析错误/非JSON",
+      "from": "k335"
+    },
+    {
+      "host": "xx55zyapi.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "api.apilyzy.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "caiji.huakuiapi.com",
       "reason": "超时/宕机",
       "from": "k335"
     }

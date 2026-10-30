@@ -1,8 +1,8 @@
 {
   "name": "KVideo 中文源 · 常规（汇总）",
-  "updated_at": "2026-10-30 07:55 +08:00",
+  "updated_at": "2026-10-31 07:41 +08:00",
   "upstream": "本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources",
-  "count": 58,
+  "count": 61,
   "mode": "merge-normal",
   "sources": [
     {
@@ -526,6 +526,16 @@
       "priority": 52
     },
     {
+      "id": "feifan1",
+      "name": "非凡线路1",
+      "baseUrl": "http://ffzy1.tv/api.php/provide/vod",
+      "searchPath": "",
+      "detailPath": "",
+      "group": "normal",
+      "enabled": true,
+      "priority": 53
+    },
+    {
       "id": "feifan",
       "name": "非凡资源2",
       "baseUrl": "http://ffzy5.tv/api.php/provide/vod",
@@ -533,7 +543,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 53
+      "priority": 54
     },
     {
       "id": "feifancj2",
@@ -543,7 +553,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 54
+      "priority": 55
     },
     {
       "id": "moduzy",
@@ -553,7 +563,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 55
+      "priority": 56
     },
     {
       "id": "jiangyu",
@@ -563,7 +573,17 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 56
+      "priority": 57
+    },
+    {
+      "id": "baofeng2",
+      "name": "暴风APP",
+      "baseUrl": "https://app.bfzyapi.com/api.php/provide/vod",
+      "searchPath": "",
+      "detailPath": "",
+      "group": "normal",
+      "enabled": true,
+      "priority": 58
     },
     {
       "id": "mahua-1080zyku",
@@ -573,7 +593,17 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 57
+      "priority": 59
+    },
+    {
+      "id": "ffzy-tv",
+      "name": "非凡影视直连",
+      "baseUrl": "http://ffzy.tv/api.php/provide/vod",
+      "searchPath": "",
+      "detailPath": "",
+      "group": "normal",
+      "enabled": true,
+      "priority": 60
     },
     {
       "id": "117-232",
@@ -583,7 +613,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 58
+      "priority": 61
     }
   ]
 }
