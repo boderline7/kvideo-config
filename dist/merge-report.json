@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02 07:33 +08:00",
+  "generated_at": "2026-11-03 10:15 +08:00",
   "upstream": "本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources",
   "inputs": {
     "本仓库": {
@@ -16,13 +16,13 @@
     }
   },
   "collected": 308,
-  "dropped_invalid": 106,
-  "merged_duplicates": 102,
+  "dropped_invalid": 103,
+  "merged_duplicates": 104,
   "dropped_xml": 6,
-  "output": 100,
+  "output": 101,
   "normal": 61,
-  "premium": 39,
-  "manual_exportable": 89,
+  "premium": 40,
+  "manual_exportable": 90,
   "invalid_samples": [
     {
       "host": "caiji.dbzy5.com",
@@ -57,11 +57,6 @@
     {
       "host": "www.yyzywcj.com",
       "reason": "超时/宕机",
-      "from": "own"
-    },
-    {
-      "host": "hsckzy.xyz",
-      "reason": "HTTP 非200/宕机",
       "from": "own"
     },
     {
@@ -115,11 +110,6 @@
       "from": "p680"
     },
     {
-      "host": "hsckzy.xyz",
-      "reason": "HTTP 非200/宕机",
-      "from": "p680"
-    },
-    {
       "host": "api.bwzyz.com",
       "reason": "超时/宕机",
       "from": "p680"
@@ -156,7 +146,7 @@
     },
     {
       "host": "api.ystian.com",
-      "reason": "超时/宕机",
+      "reason": "接口解析错误/非JSON",
       "from": "k335"
     },
     {
@@ -221,6 +211,16 @@
     },
     {
       "host": "xx55zyapi.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "api.apilyzy.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "caiji.huakuiapi.com",
       "reason": "超时/宕机",
       "from": "k335"
     }
