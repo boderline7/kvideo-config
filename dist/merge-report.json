@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04 08:34 +08:00",
+  "generated_at": "2026-11-05 08:51 +08:00",
   "upstream": "本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources",
   "inputs": {
     "本仓库": {
@@ -146,7 +146,7 @@
     },
     {
       "host": "api.ystian.com",
-      "reason": "超时/宕机",
+      "reason": "接口解析错误/非JSON",
       "from": "k335"
     },
     {
