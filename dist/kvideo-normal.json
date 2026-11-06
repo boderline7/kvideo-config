@@ -1,8 +1,8 @@
 {
   "name": "KVideo 中文源 · 常规（汇总）",
-  "updated_at": "2026-11-05 08:51 +08:00",
+  "updated_at": "2026-11-06 08:56 +08:00",
   "upstream": "本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources",
-  "count": 61,
+  "count": 60,
   "mode": "merge-normal",
   "sources": [
     {
@@ -496,16 +496,6 @@
       "priority": 49
     },
     {
-      "id": "dbzy",
-      "name": "豆瓣资源",
-      "baseUrl": "https://dbzy.tv/api.php/provide/vod",
-      "searchPath": "",
-      "detailPath": "",
-      "group": "normal",
-      "enabled": true,
-      "priority": 50
-    },
-    {
       "id": "jyzyapi-com",
       "name": "金鹰点播2",
       "baseUrl": "https://jyzyapi.com/provide/vod/from/jinyingyun/at/json",
@@ -513,7 +503,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 51
+      "priority": 50
     },
     {
       "id": "shandian",
@@ -523,7 +513,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 52
+      "priority": 51
     },
     {
       "id": "feifan1",
@@ -533,7 +523,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 53
+      "priority": 52
     },
     {
       "id": "feifan",
@@ -543,7 +533,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 54
+      "priority": 53
     },
     {
       "id": "feifancj2",
@@ -553,7 +543,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 55
+      "priority": 54
     },
     {
       "id": "moduzy",
@@ -563,7 +553,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 56
+      "priority": 55
     },
     {
       "id": "jiangyu",
@@ -573,7 +563,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 57
+      "priority": 56
     },
     {
       "id": "baofeng2",
@@ -583,7 +573,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 58
+      "priority": 57
     },
     {
       "id": "mahua-1080zyku",
@@ -593,7 +583,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 59
+      "priority": 58
     },
     {
       "id": "ffzy-tv",
@@ -603,7 +593,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 60
+      "priority": 59
     },
     {
       "id": "117-232",
@@ -613,7 +603,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 61
+      "priority": 60
     }
   ]
 }
