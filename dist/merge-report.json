@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-08 07:37 +08:00",
+  "generated_at": "2026-11-09 07:41 +08:00",
   "upstream": "本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources",
   "inputs": {
     "本仓库": {
@@ -16,13 +16,13 @@
     }
   },
   "collected": 308,
-  "dropped_invalid": 110,
-  "merged_duplicates": 100,
+  "dropped_invalid": 107,
+  "merged_duplicates": 102,
   "dropped_xml": 6,
-  "output": 98,
+  "output": 99,
   "normal": 59,
-  "premium": 39,
-  "manual_exportable": 87,
+  "premium": 40,
+  "manual_exportable": 88,
   "invalid_samples": [
     {
       "host": "caiji.dbzy5.com",
@@ -62,11 +62,6 @@
     {
       "host": "www.yyzywcj.com",
       "reason": "超时/宕机",
-      "from": "own"
-    },
-    {
-      "host": "hsckzy.xyz",
-      "reason": "HTTP 非200/宕机",
       "from": "own"
     },
     {
@@ -122,11 +117,6 @@
     {
       "host": "www.yyzywcj.com",
       "reason": "超时/宕机",
-      "from": "p680"
-    },
-    {
-      "host": "hsckzy.xyz",
-      "reason": "HTTP 非200/宕机",
       "from": "p680"
     },
     {
@@ -221,6 +211,16 @@
     },
     {
       "host": "kkzy.me",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "pz.v88.qzz.io",
+      "reason": "HTTP 非200/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "www.ggmmzy.com:9999",
       "reason": "超时/宕机",
       "from": "k335"
     }
