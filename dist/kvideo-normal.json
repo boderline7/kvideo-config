@@ -1,8 +1,8 @@
 {
   "name": "KVideo 中文源 · 常规（汇总）",
-  "updated_at": "2026-11-13 09:02 +08:00",
+  "updated_at": "2026-11-14 08:51 +08:00",
   "upstream": "本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources",
-  "count": 60,
+  "count": 57,
   "mode": "merge-normal",
   "sources": [
     {
@@ -116,16 +116,6 @@
       "priority": 11
     },
     {
-      "id": "zuida-xyz",
-      "name": "最大资源",
-      "baseUrl": "https://api.zuidapi.com/api.php/provide/vod",
-      "searchPath": "",
-      "detailPath": "",
-      "group": "normal",
-      "enabled": true,
-      "priority": 12
-    },
-    {
       "id": "wujinzy-me",
       "name": "无尽资源",
       "baseUrl": "https://api.wujinapi.me/api.php/provide/vod",
@@ -133,7 +123,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 13
+      "priority": 12
     },
     {
       "id": "xinlangapi-com",
@@ -143,7 +133,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 14
+      "priority": 13
     },
     {
       "id": "www-subozy-com",
@@ -153,7 +143,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 15
+      "priority": 14
     },
     {
       "id": "jinyingzy-com",
@@ -163,7 +153,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 16
+      "priority": 15
     },
     {
       "id": "api-ukuapi88-com",
@@ -173,7 +163,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 17
+      "priority": 16
     },
     {
       "id": "api-guangsuapi-com",
@@ -183,7 +173,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 18
+      "priority": 17
     },
     {
       "id": "www-hongniuzy-com",
@@ -193,7 +183,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 19
+      "priority": 18
     },
     {
       "id": "caiji-moduapi-cc",
@@ -203,7 +193,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 20
+      "priority": 19
     },
     {
       "id": "www-ryzyw-com",
@@ -213,7 +203,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 21
+      "priority": 20
     },
     {
       "id": "www-haohuazy-com",
@@ -223,7 +213,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 22
+      "priority": 21
     },
     {
       "id": "bdzy1-com",
@@ -233,7 +223,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 23
+      "priority": 22
     },
     {
       "id": "lovedan-net",
@@ -243,7 +233,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 24
+      "priority": 23
     },
     {
       "id": "zy-jinchancaiji-com",
@@ -253,7 +243,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 25
+      "priority": 24
     },
     {
       "id": "lzizy-net",
@@ -263,17 +253,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 26
-    },
-    {
-      "id": "zuidazy-co",
-      "name": "最大点播",
-      "baseUrl": "https://zuidazy.me/api.php/provide/vod",
-      "searchPath": "",
-      "detailPath": "",
-      "group": "normal",
-      "enabled": true,
-      "priority": 27
+      "priority": 25
     },
     {
       "id": "wujinzy-com",
@@ -283,7 +263,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 28
+      "priority": 26
     },
     {
       "id": "1080zyk4-com",
@@ -293,7 +273,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 29
+      "priority": 27
     },
     {
       "id": "www-huyaapi-com",
@@ -303,7 +283,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 30
+      "priority": 28
     },
     {
       "id": "yayazy3-com",
@@ -313,7 +293,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 31
+      "priority": 29
     },
     {
       "id": "suonizy-net",
@@ -323,17 +303,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 32
-    },
-    {
-      "id": "kuaichezy-com",
-      "name": "快车资源",
-      "baseUrl": "https://caiji.kuaichezy.org/api.php/provide/vod",
-      "searchPath": "",
-      "detailPath": "",
-      "group": "normal",
-      "enabled": true,
-      "priority": 33
+      "priority": 30
     },
     {
       "id": "shandianzy-com",
@@ -343,7 +313,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 34
+      "priority": 31
     },
     {
       "id": "yhzy-cc",
@@ -353,7 +323,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 35
+      "priority": 32
     },
     {
       "id": "ryzy",
@@ -363,7 +333,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 36
+      "priority": 33
     },
     {
       "id": "hhzy",
@@ -373,7 +343,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 37
+      "priority": 34
     },
     {
       "id": "bdzy",
@@ -383,7 +353,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 38
+      "priority": 35
     },
     {
       "id": "aidan",
@@ -393,7 +363,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 39
+      "priority": 36
     },
     {
       "id": "yilingba2",
@@ -403,7 +373,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 40
+      "priority": 37
     },
     {
       "id": "sanliuling",
@@ -413,7 +383,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 41
+      "priority": 38
     },
     {
       "id": "youku",
@@ -423,7 +393,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 42
+      "priority": 39
     },
     {
       "id": "tianyazy",
@@ -433,7 +403,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 43
+      "priority": 40
     },
     {
       "id": "tianya",
@@ -443,7 +413,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 44
+      "priority": 41
     },
     {
       "id": "wujincc",
@@ -453,7 +423,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 45
+      "priority": 42
     },
     {
       "id": "wujinnet",
@@ -463,7 +433,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 46
+      "priority": 43
     },
     {
       "id": "bubugao",
@@ -473,7 +443,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 47
+      "priority": 44
     },
     {
       "id": "niuniu",
@@ -483,7 +453,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 48
+      "priority": 45
     },
     {
       "id": "hongniu3",
@@ -493,7 +463,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 49
+      "priority": 46
     },
     {
       "id": "jyzyapi-com",
@@ -503,7 +473,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 50
+      "priority": 47
     },
     {
       "id": "shandian",
@@ -513,7 +483,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 51
+      "priority": 48
     },
     {
       "id": "feifan1",
@@ -523,7 +493,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 52
+      "priority": 49
     },
     {
       "id": "feifan",
@@ -533,7 +503,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 53
+      "priority": 50
     },
     {
       "id": "feifancj2",
@@ -543,7 +513,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 54
+      "priority": 51
     },
     {
       "id": "moduzy",
@@ -553,7 +523,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 55
+      "priority": 52
     },
     {
       "id": "jiangyu",
@@ -563,7 +533,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 56
+      "priority": 53
     },
     {
       "id": "baofeng2",
@@ -573,7 +543,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 57
+      "priority": 54
     },
     {
       "id": "mahua-1080zyku",
@@ -583,7 +553,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 58
+      "priority": 55
     },
     {
       "id": "ffzy-tv",
@@ -593,7 +563,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 59
+      "priority": 56
     },
     {
       "id": "117-232",
@@ -603,7 +573,7 @@
       "detailPath": "",
       "group": "normal",
       "enabled": true,
-      "priority": 60
+      "priority": 57
     }
   ]
 }

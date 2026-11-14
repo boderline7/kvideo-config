@@ -32,9 +32,9 @@ https://gcore.jsdelivr.net/gh/boderline7/kvideo-config@main/dist/kvideo-normal.j
 
 <!-- MERGE:START -->
 
-> 自动生成于 **2026-11-13 09:02 +08:00** ｜ 合计 **100** 个（常规 60 / 受限 40）
+> 自动生成于 **2026-11-14 08:51 +08:00** ｜ 合计 **97** 个（常规 57 / 受限 40）
 >
-> 本次：合并重复 104 条，剔除上游标注失效 104 条，排除 XML 接口 6 条
+> 本次：合并重复 100 条，剔除上游标注失效 111 条，排除 XML 接口 6 条
 
 <!-- MERGE:END -->
 
@@ -126,7 +126,7 @@ node scripts/verify.mjs     # 自检，应输出「全部通过」
 <details>
 <summary>源清单（74 个 · LunaTV 原始转换，汇总前，点击展开）</summary>
 
-> 生成于 **2026-11-13 09:02 +08:00** ｜ 上游：`fmynj/lunatv-config (raw)` ｜ 常规 40 / premium 34
+> 生成于 **2026-11-14 08:51 +08:00** ｜ 上游：`fmynj/lunatv-config (raw)` ｜ 常规 40 / premium 34
 
 | # | 名称 | id | 接口域名 | 分组 |
 |---:|---|---|---|:---:|

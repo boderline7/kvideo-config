@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13 09:02 +08:00",
+  "generated_at": "2026-11-14 08:51 +08:00",
   "upstream": "本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources",
   "inputs": {
     "本仓库": {
@@ -16,13 +16,13 @@
     }
   },
   "collected": 308,
-  "dropped_invalid": 104,
-  "merged_duplicates": 104,
+  "dropped_invalid": 111,
+  "merged_duplicates": 100,
   "dropped_xml": 6,
-  "output": 100,
-  "normal": 60,
+  "output": 97,
+  "normal": 57,
   "premium": 40,
-  "manual_exportable": 89,
+  "manual_exportable": 86,
   "invalid_samples": [
     {
       "host": "caiji.dbzy5.com",
@@ -32,6 +32,11 @@
     {
       "host": "wolongzyw.com",
       "reason": "接口解析错误/非JSON",
+      "from": "own"
+    },
+    {
+      "host": "api.zuidapi.com",
+      "reason": "超时/宕机",
       "from": "own"
     },
     {
@@ -45,8 +50,18 @@
       "from": "own"
     },
     {
+      "host": "zuidazy.me",
+      "reason": "超时/宕机",
+      "from": "own"
+    },
+    {
       "host": "wwzy.tv",
       "reason": "接口解析错误/非JSON",
+      "from": "own"
+    },
+    {
+      "host": "caiji.kuaichezy.org",
+      "reason": "超时/宕机",
       "from": "own"
     },
     {
@@ -90,6 +105,11 @@
       "from": "p680"
     },
     {
+      "host": "api.zuidapi.com",
+      "reason": "超时/宕机",
+      "from": "p680"
+    },
+    {
       "host": "api.wwzy.tv",
       "reason": "接口解析错误/非JSON",
       "from": "p680"
@@ -118,6 +138,16 @@
       "host": "caiji.semaozy.net",
       "reason": "列表为空",
       "from": "p680"
+    },
+    {
+      "host": "zuidazy.me",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "api.zuidapi.com",
+      "reason": "超时/宕机",
+      "from": "k335"
     },
     {
       "host": "dbzy.tv",
@@ -192,36 +222,6 @@
     {
       "host": "pz.v88.qzz.io",
       "reason": "HTTP 非200/宕机",
-      "from": "k335"
-    },
-    {
-      "host": "kkzy.me",
-      "reason": "超时/宕机",
-      "from": "k335"
-    },
-    {
-      "host": "pz.v88.qzz.io",
-      "reason": "HTTP 非200/宕机",
-      "from": "k335"
-    },
-    {
-      "host": "www.ggmmzy.com:9999",
-      "reason": "超时/宕机",
-      "from": "k335"
-    },
-    {
-      "host": "dadiapi.com",
-      "reason": "接口解析错误/非JSON",
-      "from": "k335"
-    },
-    {
-      "host": "xx55zyapi.com",
-      "reason": "超时/宕机",
-      "from": "k335"
-    },
-    {
-      "host": "api.apilyzy.com",
-      "reason": "超时/宕机",
       "from": "k335"
     }
   ],
