@@ -150,16 +150,6 @@
     "priority": 15
   },
   {
-    "id": "jinyingzy-com",
-    "name": "金鹰点播",
-    "baseUrl": "https://jinyingzy.com/api.php",
-    "searchPath": "/provide/vod",
-    "detailPath": "/provide/vod",
-    "group": "normal",
-    "enabled": true,
-    "priority": 16
-  },
-  {
     "id": "api-ukuapi88-com",
     "name": "U酷影视",
     "baseUrl": "https://api.ukuapi88.com/api.php",
@@ -167,7 +157,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 17
+    "priority": 16
   },
   {
     "id": "api-guangsuapi-com",
@@ -177,7 +167,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 18
+    "priority": 17
   },
   {
     "id": "www-hongniuzy-com",
@@ -187,7 +177,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 19
+    "priority": 18
   },
   {
     "id": "caiji-moduapi-cc",
@@ -197,7 +187,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 20
+    "priority": 19
   },
   {
     "id": "www-ryzyw-com",
@@ -207,7 +197,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 21
+    "priority": 20
   },
   {
     "id": "www-haohuazy-com",
@@ -217,7 +207,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 22
+    "priority": 21
   },
   {
     "id": "bdzy1-com",
@@ -227,7 +217,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 23
+    "priority": 22
   },
   {
     "id": "lovedan-net",
@@ -237,7 +227,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 24
+    "priority": 23
   },
   {
     "id": "zy-jinchancaiji-com",
@@ -247,7 +237,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 25
+    "priority": 24
   },
   {
     "id": "lzizy-net",
@@ -257,7 +247,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 26
+    "priority": 25
   },
   {
     "id": "zuidazy-co",
@@ -267,7 +257,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 27
+    "priority": 26
   },
   {
     "id": "wujinzy-com",
@@ -277,17 +267,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 28
-  },
-  {
-    "id": "www-huyaapi-com",
-    "name": "虎牙资源",
-    "baseUrl": "https://www.huyaapi.com/api.php",
-    "searchPath": "/provide/vod",
-    "detailPath": "/provide/vod",
-    "group": "normal",
-    "enabled": true,
-    "priority": 29
+    "priority": 27
   },
   {
     "id": "yayazy3-com",
@@ -297,7 +277,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 30
+    "priority": 28
   },
   {
     "id": "suonizy-net",
@@ -307,7 +287,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 31
+    "priority": 29
   },
   {
     "id": "kuaichezy-com",
@@ -317,7 +297,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 32
+    "priority": 30
   },
   {
     "id": "shandianzy-com",
@@ -327,7 +307,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 33
+    "priority": 31
   },
   {
     "id": "yhzy-cc",
@@ -337,7 +317,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 34
+    "priority": 32
   },
   {
     "id": "ryzy",
@@ -347,7 +327,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 35
+    "priority": 33
   },
   {
     "id": "hhzy",
@@ -357,7 +337,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 36
+    "priority": 34
   },
   {
     "id": "bdzy",
@@ -367,7 +347,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 37
+    "priority": 35
   },
   {
     "id": "aidan",
@@ -377,7 +357,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 38
+    "priority": 36
   },
   {
     "id": "sanliuling",
@@ -387,7 +367,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 39
+    "priority": 37
   },
   {
     "id": "youku",
@@ -397,7 +377,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 40
+    "priority": 38
   },
   {
     "id": "tianyazy",
@@ -407,7 +387,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 41
+    "priority": 39
   },
   {
     "id": "tianya",
@@ -417,7 +397,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 42
+    "priority": 40
   },
   {
     "id": "wujincc",
@@ -427,7 +407,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 43
+    "priority": 41
   },
   {
     "id": "wujinnet",
@@ -437,7 +417,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 44
+    "priority": 42
   },
   {
     "id": "niuniu",
@@ -447,7 +427,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 45
+    "priority": 43
   },
   {
     "id": "hongniu3",
@@ -457,7 +437,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 46
+    "priority": 44
   },
   {
     "id": "shandian",
@@ -467,7 +447,17 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 47
+    "priority": 45
+  },
+  {
+    "id": "feifan1",
+    "name": "非凡线路1",
+    "baseUrl": "http://ffzy1.tv/api.php",
+    "searchPath": "/provide/vod",
+    "detailPath": "/provide/vod",
+    "group": "normal",
+    "enabled": true,
+    "priority": 46
   },
   {
     "id": "feifan",
@@ -477,7 +467,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 48
+    "priority": 47
   },
   {
     "id": "feifancj2",
@@ -487,7 +477,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 49
+    "priority": 48
   },
   {
     "id": "moduzy",
@@ -497,7 +487,7 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 50
+    "priority": 49
   },
   {
     "id": "jiangyu",
@@ -507,12 +497,22 @@
     "detailPath": "/provide/vod",
     "group": "normal",
     "enabled": true,
-    "priority": 51
+    "priority": 50
   },
   {
     "id": "baofeng2",
     "name": "暴风APP",
     "baseUrl": "https://app.bfzyapi.com/api.php",
+    "searchPath": "/provide/vod",
+    "detailPath": "/provide/vod",
+    "group": "normal",
+    "enabled": true,
+    "priority": 51
+  },
+  {
+    "id": "ffzy-tv",
+    "name": "非凡影视直连",
+    "baseUrl": "http://ffzy.tv/api.php",
     "searchPath": "/provide/vod",
     "detailPath": "/provide/vod",
     "group": "normal",
