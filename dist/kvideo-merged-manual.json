@@ -610,6 +610,16 @@
     "priority": 61
   },
   {
+    "id": "hsckzy-xyz",
+    "name": "18hsck",
+    "baseUrl": "https://hsckzy.xyz/api.php",
+    "searchPath": "/provide/vod",
+    "detailPath": "/provide/vod",
+    "group": "premium",
+    "enabled": true,
+    "priority": 62
+  },
+  {
     "id": "apidanaizi-com",
     "name": "18dnz",
     "baseUrl": "https://apidanaizi.com/api.php",
@@ -617,7 +627,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 62
+    "priority": 63
   },
   {
     "id": "jkunzyapi-com",
@@ -627,7 +637,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 63
+    "priority": 64
   },
   {
     "id": "lbapi9-com",
@@ -637,7 +647,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 64
+    "priority": 65
   },
   {
     "id": "naixxzy-com",
@@ -647,7 +657,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 65
+    "priority": 66
   },
   {
     "id": "slapibf-com",
@@ -657,7 +667,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 66
+    "priority": 67
   },
   {
     "id": "apilj-com",
@@ -667,7 +677,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 67
+    "priority": 68
   },
   {
     "id": "shayuapi-com",
@@ -677,7 +687,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 68
+    "priority": 69
   },
   {
     "id": "doudouzy-com",
@@ -687,7 +697,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 69
+    "priority": 70
   },
   {
     "id": "didizy-com",
@@ -697,7 +707,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 70
+    "priority": 71
   },
   {
     "id": "heiliaozy-cc",
@@ -707,7 +717,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 71
+    "priority": 72
   },
   {
     "id": "thzy8-me",
@@ -717,7 +727,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 72
+    "priority": 73
   },
   {
     "id": "www-jingpinx-com",
@@ -727,7 +737,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 73
+    "priority": 74
   },
   {
     "id": "ckzy-me",
@@ -737,7 +747,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 74
+    "priority": 75
   },
   {
     "id": "souavzyw-com",
@@ -747,7 +757,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 75
+    "priority": 76
   },
   {
     "id": "xingba111-com",
@@ -757,7 +767,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 76
+    "priority": 77
   },
   {
     "id": "aosikazy-com",
@@ -767,7 +777,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 77
+    "priority": 78
   },
   {
     "id": "siwazyw-tv",
@@ -777,7 +787,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 78
+    "priority": 79
   },
   {
     "id": "91jp",
@@ -787,7 +797,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 79
+    "priority": 80
   },
   {
     "id": "lajiao",
@@ -797,7 +807,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 80
+    "priority": 81
   },
   {
     "id": "xing",
@@ -807,7 +817,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 81
+    "priority": 82
   },
   {
     "id": "ck",
@@ -817,7 +827,7 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 82
+    "priority": 83
   },
   {
     "id": "senlin",
@@ -827,22 +837,12 @@
     "detailPath": "/provide/vod",
     "group": "premium",
     "enabled": true,
-    "priority": 83
+    "priority": 84
   },
   {
     "id": "yutu",
     "name": "18yutu",
     "baseUrl": "https://yutuzy10.com/api.php",
-    "searchPath": "/provide/vod",
-    "detailPath": "/provide/vod",
-    "group": "premium",
-    "enabled": true,
-    "priority": 84
-  },
-  {
-    "id": "hsck",
-    "name": "18hsck",
-    "baseUrl": "https://hsckzy.vip/api.php",
     "searchPath": "/provide/vod",
     "detailPath": "/provide/vod",
     "group": "premium",
