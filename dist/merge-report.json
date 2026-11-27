@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26 10:46 +08:00",
+  "generated_at": "2026-11-27 10:48 +08:00",
   "upstream": "本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources",
   "inputs": {
     "本仓库": {
@@ -16,13 +16,13 @@
     }
   },
   "collected": 308,
-  "dropped_invalid": 116,
-  "merged_duplicates": 98,
+  "dropped_invalid": 109,
+  "merged_duplicates": 103,
   "dropped_xml": 6,
-  "output": 94,
-  "normal": 60,
-  "premium": 34,
-  "manual_exportable": 88,
+  "output": 96,
+  "normal": 57,
+  "premium": 39,
+  "manual_exportable": 85,
   "invalid_samples": [
     {
       "host": "caiji.dbzy5.com",
@@ -75,21 +75,6 @@
       "from": "own"
     },
     {
-      "host": "www.msnii.com",
-      "reason": "HTTP 非200/宕机",
-      "from": "own"
-    },
-    {
-      "host": "www.pgxdy.com",
-      "reason": "HTTP 非200/宕机",
-      "from": "own"
-    },
-    {
-      "host": "www.kxgav.com",
-      "reason": "HTTP 非200/宕机",
-      "from": "own"
-    },
-    {
       "host": "caiji.semaozy.net",
       "reason": "列表为空",
       "from": "own"
@@ -115,6 +100,11 @@
       "from": "p680"
     },
     {
+      "host": "lovedan.net",
+      "reason": "接口解析错误/非JSON",
+      "from": "p680"
+    },
+    {
       "host": "lbapiby.com",
       "reason": "HTTP 非200/宕机",
       "from": "p680"
@@ -130,24 +120,14 @@
       "from": "p680"
     },
     {
-      "host": "www.msnii.com",
-      "reason": "HTTP 非200/宕机",
-      "from": "p680"
-    },
-    {
-      "host": "www.pgxdy.com",
-      "reason": "HTTP 非200/宕机",
-      "from": "p680"
-    },
-    {
-      "host": "www.kxgav.com",
-      "reason": "HTTP 非200/宕机",
-      "from": "p680"
-    },
-    {
       "host": "caiji.semaozy.net",
       "reason": "列表为空",
       "from": "p680"
+    },
+    {
+      "host": "lovedan.net",
+      "reason": "接口解析错误/非JSON",
+      "from": "k335"
     },
     {
       "host": "dbzy.tv",
@@ -157,6 +137,11 @@
     {
       "host": "caiji.dbzy5.com",
       "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "ffzy1.tv",
+      "reason": "HTTP 非200/宕机",
       "from": "k335"
     },
     {
@@ -222,6 +207,21 @@
     {
       "host": "pz.v88.qzz.io",
       "reason": "HTTP 非200/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "kkzy.me",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "pz.v88.qzz.io",
+      "reason": "HTTP 非200/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "www.ggmmzy.com:9999",
+      "reason": "超时/宕机",
       "from": "k335"
     }
   ],
