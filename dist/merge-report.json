@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27 10:48 +08:00",
+  "generated_at": "2026-11-28 10:38 +08:00",
   "upstream": "本仓库 + puppet680/KVideo-config + 335459215/kvideo-sources",
   "inputs": {
     "本仓库": {
@@ -16,13 +16,13 @@
     }
   },
   "collected": 308,
-  "dropped_invalid": 109,
-  "merged_duplicates": 103,
+  "dropped_invalid": 104,
+  "merged_duplicates": 104,
   "dropped_xml": 6,
-  "output": 96,
-  "normal": 57,
-  "premium": 39,
-  "manual_exportable": 85,
+  "output": 100,
+  "normal": 60,
+  "premium": 40,
+  "manual_exportable": 89,
   "invalid_samples": [
     {
       "host": "caiji.dbzy5.com",
@@ -100,11 +100,6 @@
       "from": "p680"
     },
     {
-      "host": "lovedan.net",
-      "reason": "接口解析错误/非JSON",
-      "from": "p680"
-    },
-    {
       "host": "lbapiby.com",
       "reason": "HTTP 非200/宕机",
       "from": "p680"
@@ -125,11 +120,6 @@
       "from": "p680"
     },
     {
-      "host": "lovedan.net",
-      "reason": "接口解析错误/非JSON",
-      "from": "k335"
-    },
-    {
       "host": "dbzy.tv",
       "reason": "超时/宕机",
       "from": "k335"
@@ -137,11 +127,6 @@
     {
       "host": "caiji.dbzy5.com",
       "reason": "超时/宕机",
-      "from": "k335"
-    },
-    {
-      "host": "ffzy1.tv",
-      "reason": "HTTP 非200/宕机",
       "from": "k335"
     },
     {
@@ -221,6 +206,21 @@
     },
     {
       "host": "www.ggmmzy.com:9999",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "dadiapi.com",
+      "reason": "接口解析错误/非JSON",
+      "from": "k335"
+    },
+    {
+      "host": "xx55zyapi.com",
+      "reason": "超时/宕机",
+      "from": "k335"
+    },
+    {
+      "host": "api.apilyzy.com",
       "reason": "超时/宕机",
       "from": "k335"
     }
